@@ -6,7 +6,7 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2018/08/30 17:43:54 by rreedy           ###   ########.fr        #
+#    Updated: 2018/08/30 17:47:54 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LOBJS := $(patsubst %.c,%.o,$(wildcard ./$(LIB)/*.c))
 CFLAGS += -Wall -Wextra -Werror -I./includes -I./$(LIB)/includes
 LFLAGS += -L./ -lftprintf
 
-.PHONY := all clean fclean
+.PHONY := all checker pushswap libftprintf clean fclean re
 
 all: $(NAME)
 

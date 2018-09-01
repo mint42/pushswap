@@ -6,12 +6,11 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:05:21 by rreedy            #+#    #+#             */
-/*   Updated: 2018/08/31 10:12:59 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/08/31 19:20:52 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-#include "libft.h"
 
 //Swap (sa, sb, ss)
 //swap first 2 elements on stack
@@ -20,30 +19,30 @@ void	swap(t_stack *stack)
 {
 	int		temp;
 
-	temp = stack->next;
-	stack->next = stack;
-	stack = temp;
+	temp = stack->next->num;
+	stack->next->num = stack->num;
+	stack->num = temp;
 }
 
 //Push (pa, pb)
 //put top of b onto top of a or vice versa
 
-void	push(t_stack *stack, int data)
+void	push(t_stack **stack, int data)
 {
-	t_stack		temp;
+	t_stack		*temp;
 
-	if (stack == NULL)
+	if (*stack == NULL)
 	{
-		stack = (t_stack *)malloc(sizeof(t_stack));
-		stack->num = data;
-		stack->next = NULL;
+		*stack = (t_stack *)ft_memalloc(sizeof(t_stack));
+		(*stack)->num = data;
+		(*stack)->next = NULL;
 	}
 	else
 	{
-		temp = (t_stack *)malloc(sizeof(t_stack));
+		temp = (t_stack *)ft_memalloc(sizeof(t_stack));
 		temp->num = data;
-		temp->next = stack;
-		stack = temp;
+		temp->next = *stack;
+		*stack = temp;
 	}
 }
 
@@ -52,13 +51,13 @@ void	push(t_stack *stack, int data)
 
 void	rotate(t_stack *stack)
 {
-	t_stack		temp;
-	t_stack		new;
+	t_stack		*temp;
+	t_stack		*new;
 
 	if (stack == NULL)
 		return ;
 	temp = stack;
-	new = (t_stack *)malloc(sizeof(t_stack));
+	new = (t_stack *)ft_memalloc(sizeof(t_stack));
 	new->num = stack->num;
 	new->next = NULL;
 	while (temp->next != NULL)
@@ -74,20 +73,20 @@ void	rotate(t_stack *stack)
 
 void	rrotate(t_stack *stack)
 {
-	t_stack		temp;
+	t_stack		*temp;
 
 	if (stack == NULL)
 		return ;
 	temp = stack;
 	while (temp->next != NULL)
 		temp = temp->next;
-	push(stack, temp->data);
+	push(&stack, temp->num);
 	free(temp);
 }
 
 void	display(t_stack *stack)
 {
-	t_stack		temp;
+	t_stack		*temp;
 
 	temp = stack;
 	while (temp != NULL)
@@ -101,15 +100,17 @@ void	display(t_stack *stack)
 int		main(int argc, char **argv)
 {
 	t_stack		*a;
-	t_stack		*b;
+//	t_stack		*b;
 	int			i;
 
+	a = NULL;
 	i = argc - 1;
-	while (i--)
+	while (i)
 	{
-		ft_printf("stack numbers: %d\n", argv[i]);
-		push(a, argv[i]);
+		ft_printf("stack numbers: %d\n", ft_atoi(argv[i]));
+		push(&a, ft_atoi(argv[i]));
 		display(a);
+		--i;
 	}
 
 

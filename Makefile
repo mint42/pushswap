@@ -6,39 +6,41 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2018/08/31 08:12:33 by rreedy           ###   ########.fr        #
+#    Updated: 2018/08/31 19:12:45 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := checker
-PUSHSWAP := pushswap
+PSWAP := pushswap
 LIB := libftprintf
 
-POBJS := $(patsubst %.c,%.o,$(wildcard ./$(PUSHSWAP)/*.c))
-COBJS := $(patsubst %.c,%.o,$(wildcard ./$(NAME)/*.c))
-LOBJS := $(patsubst %.c,%.o,$(wildcard ./$(LIB)/*.c))
+CH_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(NAME)/*.c))
+PS_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(PSWAP)/*.c))
+
+PF_OBJS := $(patsubst %.c,%.o,$(wildcard ./$(LIB)/srcs/ft_printf/*.c))
+LIB_OBJS := $(patsubst %.c,%.o,$(wildcard ./$(LIB)/srcs/*.c))
 
 CFLAGS += -Wall -Wextra -Werror -I./includes -I./$(LIB)/includes
 LFLAGS += -L./ -lftprintf
 
-.PHONY := all checker pushswap libftprintf clean fclean re
+.PHONY: all $(LIB) clean fclean re
 
-all: $(NAME)
+all: $(LIB) $(NAME) $(PSWAP)
 
-$(NAME): $(COBJS) $(LIB) $(PUSHSWAP)
-	$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME)
+$(NAME): $(CH_OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(CH_OBJS) $(LFLAGS)
 
-$(PUSHSWAP): $(POBJS)
-	$(CC) $(CFLAGS) $(LFLAGS) -o $(PUSHSWAP)
+$(PSWAP): $(PS_OBJS)
+	$(CC) $(CFLAGS) -o $(PSWAP) $(PS_OBJS) $(LFLAGS)
 
-$(LIB): $(LOBJS)
-	ar rc $(LIB).a $(LOBJS)
+$(LIB): $(PF_OBJS) $(LIB_OBJS)
+	ar rc $(LIB).a $(PF_OBJS) $(LIB_OBJS)
 	ranlib $(LIB).a
 
 clean:
-	@- $(RM) $(POBJS) $(COBJS) $(LOBJS)
+	@- $(RM) $(PS_OBJS) $(CH_OBJS) $(PF_OBJS) $(LIB_OBJS)
 
-fclean: fclean
-	@- $(RM) $(NAME) $(PUSHSWAP) $(LIB)/$(LIB).a
+fclean: clean
+	@- $(RM) $(NAME) $(PSWAP) $(LIB).a
 
 re: fclean all

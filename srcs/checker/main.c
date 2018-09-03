@@ -6,113 +6,58 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:05:21 by rreedy            #+#    #+#             */
-/*   Updated: 2018/08/31 19:20:52 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/02 13:01:02 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-//Swap (sa, sb, ss)
-//swap first 2 elements on stack
-
-void	swap(t_stack *stack)
+int		fill_stack(t_stack **stack, int size)
 {
-	int		temp;
-
-	temp = stack->next->num;
-	stack->next->num = stack->num;
-	stack->num = temp;
+	while (argc--)
+		push(&a, ft_atoi(argv[argc]));
+	return (0);
 }
 
-//Push (pa, pb)
-//put top of b onto top of a or vice versa
-
-void	push(t_stack **stack, int data)
+int		fill_instructions(t_list **instructions)
 {
-	t_stack		*temp;
-
-	if (*stack == NULL)
+	while (get_next_line(0, (char *)cur->data)
 	{
-		*stack = (t_stack *)ft_memalloc(sizeof(t_stack));
-		(*stack)->num = data;
-		(*stack)->next = NULL;
+		cur->size = ft_strlen((char *)cur->data);
+		cur = cur->next;
+		cur->next = NULL;
 	}
-	else
-	{
-		temp = (t_stack *)ft_memalloc(sizeof(t_stack));
-		temp->num = data;
-		temp->next = *stack;
-		*stack = temp;
-	}
+	return (0);
 }
 
-//Rotate (ra, rb, rr)
-//shift all elements up on stack by one (first becomes last)
-
-void	rotate(t_stack *stack)
+void	execute(t_stack **a, t_stack *b, t_list *instructions)
 {
-	t_stack		*temp;
-	t_stack		*new;
-
-	if (stack == NULL)
-		return ;
-	temp = stack;
-	new = (t_stack *)ft_memalloc(sizeof(t_stack));
-	new->num = stack->num;
-	new->next = NULL;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new;
-	temp = stack->next;
-	free(stack);
-	stack = temp;
+	
 }
 
-//Reverse Rotate (rra, rrb, rrr)
-//shift all elements down on stack by one (last becomes first)
-
-void	rrotate(t_stack *stack)
+void	check(t_stack *a, t_stack *b)
 {
-	t_stack		*temp;
 
-	if (stack == NULL)
-		return ;
-	temp = stack;
-	while (temp->next != NULL)
-		temp = temp->next;
-	push(&stack, temp->num);
-	free(temp);
-}
-
-void	display(t_stack *stack)
-{
-	t_stack		*temp;
-
-	temp = stack;
-	while (temp != NULL)
-	{
-		ft_printf("%d\n", temp->num);
-		temp = temp->next;
-	}
-	ft_printf("_\na\n");
 }
 
 int		main(int argc, char **argv)
 {
 	t_stack		*a;
-//	t_stack		*b;
-	int			i;
+	t_stack		*b;
+	t_list		*instructions;
+	t_list		*cur;
 
 	a = NULL;
-	i = argc - 1;
-	while (i)
-	{
-		ft_printf("stack numbers: %d\n", ft_atoi(argv[i]));
-		push(&a, ft_atoi(argv[i]));
-		display(a);
-		--i;
-	}
-
+	b = NULL;
+	instructions = ft_lstnew(instructions, 0);
+	cur = instructions;
+	if (!fill_stack(&a, argc) || !fill_instructions(&instructions))
+		return (0);
+	execute(a, b, instructions);
+	ft_printf("%s\n", check(a));
+	display(a);
+	return (0);
+}
 
 //	getting the numbers to put into the linked list
 //	first arg at top of stack
@@ -121,5 +66,3 @@ int		main(int argc, char **argv)
 //	return if instructions are bad but do them if good
 //	check if list is sorted 
 //	write errors to the stderr, or else display OK\n or KO\n
-	return (0);
-}

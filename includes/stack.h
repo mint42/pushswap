@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 17:16:20 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/03 17:35:33 by rreedy           ###   ########.fr       */
+/*   Created: 2018/09/03 17:30:33 by rreedy            #+#    #+#             */
+/*   Updated: 2018/09/03 17:31:00 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef STACK_H
+# define STACK_H
 
-# include "stack.h"
 # include "../libftprintf/includes/ft_printf.h"
 
-//		checker
+typedef struct		s_stack
+{
+	int				num;
+	struct s_stack	*next;
+}					t_stack;
 
-int		fill_stack(t_stack **stack, char *argv, int argc);
-int		fill_instructions(t_list **instructions);
-void	execute(t_stack **a, t_stack *b, t_list *instructions);
-void	check(t_stack *a, t_stack *b);
-
-//		pushswap
-
+void	display(t_stack *stack);
+void	*peek(t_stack *stack);
+void	*pop(t_stack **stack);
+void	push(t_stack **stack, int data);
+void	rotate(t_stack **stack);
+void	rrotate(t_stack **stack);
+void	swap(t_stack **stack);
 
 #endif

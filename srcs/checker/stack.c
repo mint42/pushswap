@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 11:45:34 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/02 11:45:44 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/03 17:53:08 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	display(t_stack *stack)
 	temp = stack;
 	while (temp != NULL)
 	{
-		ft_printf("%d\n", temp->num);
+		ft_printf("top -> %d, ", temp->num);
 		temp = temp->next;
 	}
-	ft_printf("_\na\n");
+	ft_printf("\n");
 }

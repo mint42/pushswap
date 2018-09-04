@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 17:16:20 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/03 17:35:33 by rreedy           ###   ########.fr       */
+/*   Created: 2018/09/03 17:43:38 by rreedy            #+#    #+#             */
+/*   Updated: 2018/09/03 19:46:09 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "stack.h"
 
-# include "stack.h"
-# include "../libftprintf/includes/ft_printf.h"
+void	display(t_stack *stack)
+{
+	t_stack		*temp;
 
-//		checker
-
-int		fill_stack(t_stack **stack, char *argv, int argc);
-int		fill_instructions(t_list **instructions);
-void	execute(t_stack **a, t_stack *b, t_list *instructions);
-void	check(t_stack *a, t_stack *b);
-
-//		pushswap
-
-
-#endif
+	temp = stack;
+	ft_printf("top -> ");
+	while (temp != NULL)
+	{
+		ft_printf("%d, ", temp->num);
+		temp = temp->next;
+	}
+	ft_printf("\n");
+}

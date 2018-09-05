@@ -6,95 +6,95 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:05:21 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/03 22:53:29 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/04 23:30:17 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-//	fills a linked list with numbers after checking that it's valid
-
-int		fill_stack(t_stack **stack, char *argv, int argc)
+int		fill_stack(t_stack **stack, char **argv, int argc)
 {
-	int		i;
-	long	n;
-	int		sign;
+	int			i;
+	long		n;
+	t_stack		*cur;
 
 	while (argc)
 	{
 		n = 0;
 		i = 0;
-		sign = (argv[argc][i] == '-') ? -1 : 1;
+		cur = *stack;
 		while (argv[argc][i] && ft_isdigit(argv[argc][i]))
-		{
-			n = n * 10 + (argv[argc][i] - 48);
-			++i;
-		}
+			n = n * 10 + (argv[argc][i++] - 48);
+		if (argv[argc][0] == '-')
+			n = n * -1;
+		if (i == 0 || argv[argc][i] || n > MAX || n < MIN)
+			return (0);
 		while (cur)
 		{
-			if (cur->n
+			if (cur->num == n)
+				return (0);
+			cur = cur->next;
 		}
-		if (dupicates || argv[argc][i] || n > 2147483647 || n < -2147483648)
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-		push(&stack, ft_atoi(argv[argc]));
+		push(stack, ft_atoi(argv[argc]));
 		--argc;
 	}
 	return (1);
 }
 
-//	fills a linked list with instructions after checking that it's valid
-
-int		fill_instructions(t_list **instructions)
+int		execute(t_stack **a, t_stack **b)
 {
-	while (get_next_line(0, (char *)cur->data)
+	char	*op;
+	int		er;
+
+	op = NULL;
+	er = 0;
+	while (get_next_line(0, &op) && !er)
 	{
-		cur->size = ft_strlen((char *)cur->data);
-		cur = cur->next;
-		cur->next = NULL;
+		er = 1;
+		if ((ft_strequ(op, "sa") || ft_strequ(op, "ss")) && er = 0)
+			swap(a);
+		if ((ft_strequ(op, "sb") || ft_strequ(op, "ss")) && er = 0)
+			swap(b);
+		if ((ft_strequ(op, "ra") || ft_strequ(op, "rr")) && er = 0)
+			rotate(a);
+		if ((ft_strequ(op, "rb") || ft_strequ(op, "rr")) && er = 0)
+			rotate(b);
+		if ((ft_strequ(op, "rra") || ft_strequ(op, "rrr")) && er = 0)
+			rrotate(a);
+		if ((ft_strequ(op, "rrb") || ft_strequ(op, "rrr")) && er = 0)
+			rrotate(b);
+		if (ft_strequ(op, "pa") && er = 0)
+			push(a, *(b->num));
+		if (ft_strequ(op, "pb") && er = 0)
+			push(b, *(a->num));
+		free(&op);
 	}
-	return (0);
+	return (er);
 }
 
-//	runs the instructions on stacks a and b
-
-void	execute(t_stack **a, t_stack *b, t_list *instructions)
+char	*check(t_stack *a, t_stack *b)
 {
-	
-}
-
-//	checks if stack a is sorted and stack b is empty
-
-void	check(t_stack *a, t_stack *b)
-{
-
+	while (a->next != NULL)
+	{
+		if (a->num > a->next->num)
+			return ("KO");
+		a = a->next;
+	}
+	return ((b == NULL) ? "OK" : "KO");
 }
 
 int		main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
-	t_list		*instructions;
-	t_list		*cur;
 
 	a = NULL;
 	b = NULL;
-	instructions = ft_lstnew(instructions, 0);
-	cur = instructions;
-	if (!fill_stack(&a, argc - 1) || !fill_instructions(&instructions))
-		return (0);
-	execute(a, b, instructions);
-	ft_printf("%s\n", check(a, b));
-	display(a);
+	if (fill_stack(&a, argv, argc - 1) && execute(&a, &b))
+		write(1, check(a, b), 2);
+	else
+		write(2, "Error\n", 6);
+	stackdel(&a);
+	stackdel(&b);
 	return (0);
 }
-
-//	getting the numbers to put into the linked list
-//	first arg at top of stack
-//	reading from stdin will give instructions, can use gnl!
-//	keep instructions in a double char array?
-//	return if instructions are bad but do them if good
-//	check if list is sorted 
-//	write errors to the stderr, or else display OK\n or KO\n

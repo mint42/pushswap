@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:16:20 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/04 23:21:43 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/05 13:43:49 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 
 //		checker
 
+int		fill_instructions(char **instructions, t_stack *op);
 int		fill_stack(t_stack **stack, char **argv, int argc);
-int		execute(t_stack **a, t_stack **b);
+void	execute(t_stack **a, t_stack **b, t_stack *op);
 char	*check(t_stack *a, t_stack *b);
 
 //		pushswap

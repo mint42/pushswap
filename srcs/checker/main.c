@@ -6,11 +6,39 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:05:21 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/04 23:30:17 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/05 13:46:19 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+int		fill_instructions(char **instructions, t_stack *op)
+{
+	int		i;
+
+	i = 0;
+	instructions[0] = ft_strdup("sa");
+	instructions[1] = ft_strdup("sb");
+	instructions[2] = ft_strdup("ra");
+	instructions[3] = ft_strdup("rb");
+	instructions[4] = ft_strdup("rra");
+	instructions[5] = ft_strdup("rrb");
+	instructions[6] = ft_strdup("pa");
+	instructions[7] = ft_strdup("pb");
+	instructions[8] = ft_strdup("ss");
+	instructions[9] = ft_strdup("rr");
+	instructions[10] = ft_strdup("rrr");
+	instructions[11] = NULL;
+	while (i < 11 && get_next_line(0, &instructions[11]) && (i = 0) == 0)
+	{
+		while (i < 11 && !ft_strequ(instructions[11], instructions[i]))
+			++i;
+		push(&op, i);
+		rotate(&op);
+		ft_strdel(&instructions[11]);
+	}
+	return ((i != 11) ? 1 : 0);
+}
 
 int		fill_stack(t_stack **stack, char **argv, int argc)
 {
@@ -41,35 +69,28 @@ int		fill_stack(t_stack **stack, char **argv, int argc)
 	return (1);
 }
 
-int		execute(t_stack **a, t_stack **b)
+void	execute(t_stack **a, t_stack **b, t_stack *op)
 {
-	char	*op;
-	int		er;
-
-	op = NULL;
-	er = 0;
-	while (get_next_line(0, &op) && !er)
+	while (op)
 	{
-		er = 1;
-		if ((ft_strequ(op, "sa") || ft_strequ(op, "ss")) && er = 0)
+		if (op->num == 0 || op->num == 8)
 			swap(a);
-		if ((ft_strequ(op, "sb") || ft_strequ(op, "ss")) && er = 0)
+		if (op->num == 1 || op->num == 8)
 			swap(b);
-		if ((ft_strequ(op, "ra") || ft_strequ(op, "rr")) && er = 0)
+		if (op->num == 2 || op->num == 9)
 			rotate(a);
-		if ((ft_strequ(op, "rb") || ft_strequ(op, "rr")) && er = 0)
+		if (op->num == 3 || op->num == 9)
 			rotate(b);
-		if ((ft_strequ(op, "rra") || ft_strequ(op, "rrr")) && er = 0)
+		if (op->num == 4 || op->num == 10)
 			rrotate(a);
-		if ((ft_strequ(op, "rrb") || ft_strequ(op, "rrr")) && er = 0)
+		if (op->num == 5 || op->num == 10)
 			rrotate(b);
-		if (ft_strequ(op, "pa") && er = 0)
-			push(a, *(b->num));
-		if (ft_strequ(op, "pb") && er = 0)
-			push(b, *(a->num));
-		free(&op);
+		if (op->num == 6)
+			push(a, (*b)->num);
+		if (op->num == 7)
+			push(b, (*a)->num);
+		op = op->next;
 	}
-	return (er);
 }
 
 char	*check(t_stack *a, t_stack *b)
@@ -77,24 +98,32 @@ char	*check(t_stack *a, t_stack *b)
 	while (a->next != NULL)
 	{
 		if (a->num > a->next->num)
-			return ("KO");
+			return ("KO\n");
 		a = a->next;
 	}
-	return ((b == NULL) ? "OK" : "KO");
+	return ((b == NULL) ? "OK\n" : "KO\n");
 }
 
 int		main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
+	t_stack		*op;
+	char		**instructions;
 
 	a = NULL;
 	b = NULL;
-	if (fill_stack(&a, argv, argc - 1) && execute(&a, &b))
-		write(1, check(a, b), 2);
+	op = NULL;
+	instructions = (char **)ft_memalloc(sizeof(char *) * 12);
+	if (fill_stack(&a, argv, argc - 1) && fill_instructions(instructions, op))
+	{
+		execute(&a, &b, op);
+		write(1, check(a, b), 3);
+	}
 	else
 		write(2, "Error\n", 6);
 	stackdel(&a);
 	stackdel(&b);
+	stackdel(&op);
 	return (0);
 }

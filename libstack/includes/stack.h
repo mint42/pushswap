@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:30:33 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/03 17:31:00 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/05 09:04:44 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	rotate(t_stack **stack);
 void	rrotate(t_stack **stack);
+void	stackdel(t_stack **stack);
 void	swap(t_stack **stack);
 
 #endif

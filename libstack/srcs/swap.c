@@ -6,17 +6,17 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:54:49 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/03 17:55:09 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/05 10:23:18 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-void	swap(t_stack *stack)
+void	swap(t_stack **stack)
 {
 	int		temp;
 
-	temp = stack->next->num;
-	stack->next->num = stack->num;
-	stack->num = temp;
+	temp = (*stack)->next->num;
+	(*stack)->next->num = (*stack)->num;
+	(*stack)->num = temp;
 }

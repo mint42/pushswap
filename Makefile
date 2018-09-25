@@ -6,7 +6,7 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2018/09/05 09:26:00 by rreedy           ###   ########.fr        #
+#    Updated: 2018/09/07 19:54:47 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,21 +25,21 @@ STACK_OBJS	:= $(patsubst %.c,%.o,$(wildcard ./$(LIBSTACK)/srcs/*.c))
 CFLAGS		+= -Wall -Wextra -Werror -I./includes -I./$(LIBFT)/includes -I./$(LIBSTACK)/includes
 LFLAGS		+= -L./ -lftprintf -lstack
 
-.PHONY: all $(LIBFT) $(LIBSTACK) clean fclean re
+.PHONY: all clean fclean re
 
-all: $(LIBFT) $(LIBSTACK) $(NAME) $(PSWAP)
+all: $(LIBFT).a $(LIBSTACK).a $(NAME) $(PSWAP)
 
-$(NAME): $(CHECK_OBJS)
+$(NAME): $(LIBFT).a $(LIBSTACK).a $(CHECK_OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(CHECK_OBJS) $(LFLAGS)
 
-$(PSWAP): $(PS_OBJS)
+$(PSWAP): $(LIBFT).a $(LIBSTACK).a $(PSWAP_OBJS)
 	$(CC) $(CFLAGS) -o $(PSWAP) $(PSWAP_OBJS) $(LFLAGS)
 
-$(LIBFT): $(PRINT_OBJS) $(LIBFT_OBJS)
+$(LIBFT).a: $(PRINT_OBJS) $(LIBFT_OBJS)
 	ar rc $(LIBFT).a $(PRINT_OBJS) $(LIBFT_OBJS)
 	ranlib $(LIBFT).a
 
-$(LIBSTACK): $(STACK_OBJS) $(LIBFT_OBJS)
+$(LIBSTACK).a: $(STACK_OBJS) $(LIBFT_OBJS)
 	ar rc $(LIBSTACK).a $(STACK_OBJS) $(LIBFT_OBJS)
 	ranlib $(LIBSTACK).a
 

@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:50:39 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/05 09:29:23 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/07 18:41:33 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rotate(t_stack **stack)
 	t_stack		*temp;
 	t_stack		*new;
 
-	if (stack == NULL)
+	if ((*stack) == NULL || (*stack)->next == NULL)
 		return ;
 	temp = *stack;
 	new = (t_stack *)ft_memalloc(sizeof(t_stack));
@@ -27,6 +27,6 @@ void	rotate(t_stack **stack)
 		temp = temp->next;
 	temp->next = new;
 	temp = (*stack)->next;
-	free(stack);
+	free(*stack);
 	*stack = temp;
 }

@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:30:33 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/25 11:10:37 by rreedy           ###   ########.fr       */
+/*   Updated: 2018/09/27 09:51:56 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct		s_stack
 int					fill_stack(t_stack **stack, char **argv, int argc);
 int					issort(t_stack *stack);
 int					issortr(t_stack *stack);
+int					stacklen(t_stack *stack);
+void				extremes(t_stack *stack, int *min, int *max);
 void				display(t_stack *stack);
 void				push(t_stack **stack, int data);
 void				rotate(t_stack **stack);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_main.c                                     :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 17:05:21 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/25 11:00:51 by rreedy           ###   ########.fr       */
+/*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
+/*   Updated: 2018/09/27 10:53:55 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "checker.h"
 
 int		fill_instructions(char **instructions, t_stack **op)
 {
@@ -79,7 +79,7 @@ int		main(int argc, char **argv)
 	if (fill_stack(&a, argv, argc - 1) && fill_instructions(instructions, &op))
 	{
 		execute(&a, &b, op);
-		if (issort(a) && !b)
+		if ((issort(a) == 0) && !b)
 			write(1, "OK\n", 3);
 		else
 			write(1, "KO\n", 3);

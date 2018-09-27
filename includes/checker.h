@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrotate.c                                          :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/03 17:52:08 by rreedy            #+#    #+#             */
-/*   Updated: 2018/09/27 10:58:42 by rreedy           ###   ########.fr       */
+/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
+/*   Updated: 2018/09/27 10:01:53 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#ifndef CHECKER_H
+# define CHECKER_H
 
-void	rrotate(t_stack **stack)
-{
-	t_stack		*temp;
+# include "stack.h"
+# include "../libftprintf/includes/ft_printf.h"
 
-	if (*stack == NULL || (*stack)->next == NULL)
-		return ;
-	temp = *stack;
-	while ((*stack)->next != NULL)
-		(*stack) = (*stack)->next;
-	printf("testy\n");
-	push(&temp, (*stack)->next->num);
-	printf("testy\n");
-	free(*stack);
-	*stack = temp;
-}
+void	execute(t_stack **a, t_stack **b, t_stack *op);
+int		fill_instructions(char **instructions, t_stack **op);
+
+#endif

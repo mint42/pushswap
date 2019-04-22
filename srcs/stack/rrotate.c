@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:52:08 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 04:06:22 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/22 06:07:37 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rra(t_stack *a, t_stack *b)
 	bottom = cur->next;
 	cur->next = 0;
 	bottom->next = a->top->next;
-	a->top->next = bottom->next;
+	a->top->next = bottom;
 	ft_swap(&NUM(a->top), &NUM(bottom));
 }
 
@@ -46,7 +46,7 @@ void	rrb(t_stack *a, t_stack *b)
 	bottom = cur->next;
 	cur->next = 0;
 	bottom->next = b->top->next;
-	b->top->next = bottom->next;
+	b->top->next = bottom;
 	ft_swap(&NUM(b->top), &NUM(bottom));
 }
 

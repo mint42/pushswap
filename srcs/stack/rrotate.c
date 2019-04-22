@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:52:08 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 23:53:49 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/22 04:06:22 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	rra(t_stack *a, t_stack *b)
 	t_snode		*bottom;
 	t_snode		*cur;
 
-	if (!a || !(a->top))
+	if (!a || !(a->top) || !(a->top->next))
 		return ;
 	(void)b;
 	cur = a->top;
@@ -37,7 +37,7 @@ void	rrb(t_stack *a, t_stack *b)
 	t_snode		*bottom;
 	t_snode		*cur;
 
-	if (!b || !(b->top))
+	if (!b || !(b->top) || !(b->top->next))
 		return ;
 	(void)a;
 	cur = b->top;

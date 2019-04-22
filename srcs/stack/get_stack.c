@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 13:20:45 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 01:22:48 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/22 01:48:42 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				get_stack(t_stack *stack, char **argv, int argc)
 
 	if (!stack)
 		return (0);
-	while (argc > 1)
+	while (argc >= 1)
 	{
 		n = (long int *)ft_memalloc(sizeof(long int));
 		*n = 0;

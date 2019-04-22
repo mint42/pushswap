@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   stack_len.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 17:16:20 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 03:28:00 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/22 03:28:35 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/22 03:30:51 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#include "ft_stack.h"
 
-typedef struct s_stack		t_stack;
+int		stack_len(t_stack *stack)
+{
+	t_snode		*cur;
+	int			len;
 
-void	rot(t_stack *stack, int ro, char aorb);
-void	sorta(t_stack *a, t_stack *b);
-void	sortb(t_stack *b, t_stack *a);
-
-#endif
+	if (!stack || !(stack->top))
+		return (0);
+	len = 0;
+	cur = stack->top;
+	while (cur)
+	{
+		++len;
+		cur = cur->next;
+	}
+	return (len);
+}

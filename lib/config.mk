@@ -6,13 +6,13 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/22 00:16:25 by rreedy            #+#    #+#              #
-#    Updated: 2019/04/22 00:19:50 by rreedy           ###   ########.fr        #
+#    Updated: 2019/04/22 03:33:47 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC := gcc
 INCLUDES := -I./includes -I./includes/ft_printf
-CFLAGS += -Wall -Wextra -Werror $(INCLUDES)
+CFLAGS += -g -Wall -Wextra -Werror $(INCLUDES)
 LFLAGS += -L./ -lft
 MODS := ft_binarytree\
 		ft_conv\

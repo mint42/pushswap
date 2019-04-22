@@ -6,18 +6,17 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2019/04/22 00:14:27 by rreedy           ###   ########.fr        #
+#    Updated: 2019/04/22 03:34:54 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CHEKR := checker
-PSWAP := pushswap
-STACK := stack
+PSWAP := push_swap
 LIB := lib/libft.a
 
-CHECK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(CHEKR)/*.c))
-PSWAP_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(PSWAP)/*.c))
-STACK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(STACK)/*.c))
+CHECK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/checker/*.c))
+PSWAP_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/pushswap/*.c))
+STACK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/stack/*.c))
 
 CC := gcc
 INCLUDES := -I./includes -I./lib/includes -I./lib/includes/ft_printf

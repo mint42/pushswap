@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 01:29:13 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/22 04:16:23 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ static int		get_operations(t_stack *ops)
 	{
 		i = (int *)ft_memalloc(sizeof(int));
 		*i = 0;
-		while (g_all_ops[*i] && !ft_strequ(input, g_all_ops[*i]))
-			++i;
-		if (*i < 11)
-			break ;
+		while (g_all_ops[*i])
+		{
+			if (ft_strequ(input, g_all_ops[*i]))
+				break ;
+			++(*i);
+		}
 		ft_stack_push(ops, (void *)i);
+		if (*i == TOTAL_OPS)
+			return (0);
 		ra(ops, 0);
 		ft_strdel(&input);
 	}
-	return ((*i < 11) ? 1 : 0);
+	return (1);
 }
 
 static void		execute(t_stack *a, t_stack *b, t_stack *ops)
@@ -70,7 +74,7 @@ static void		execute(t_stack *a, t_stack *b, t_stack *ops)
 	}
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;

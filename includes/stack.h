@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 05:48:46 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 23:39:50 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/22 03:30:31 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define NUM(snode) (*((int *)(snode->content)))
 
 int			get_stack(t_stack *stack, char **argv, int argc);
+int			stack_len(t_stack *stack);
 int			issort(t_stack *stack);
 int			issortr(t_stack *stack);
 void		print_stack(t_stack *stack);

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2018/06/04 11:35:01 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/07 22:58:16 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_mem.h"
+#include "ft_str.h"
+#include <stddef.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	size_t len;
 
-#endif
+	len = ft_strlen(dst);
+	if (len >= dstsize)
+		return (dstsize + ft_strlen(src));
+	(void)ft_memccpy(dst + len, src, 0, dstsize - len - 1);
+	dst[dstsize - 1] = 0;
+	return (len + ft_strlen(src));
+}

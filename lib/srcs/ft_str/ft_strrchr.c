@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2018/04/23 09:18:55 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/07 23:10:11 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include <stddef.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+char	*ft_strrchr(const char *s, int c)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	char	*ptr;
 
-#endif
+	ptr = NULL;
+	while (*s)
+		if (*s++ == (char)c)
+			ptr = (char *)(s - 1);
+	return (((char)c == '\0') ? (char *)s : ptr);
+}

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_word_count.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/07 23:12:10 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 19:11:23 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
-
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+int		ft_word_count(const char *s, int c)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	int		i;
 
-#endif
+	i = 0;
+	while (*s)
+	{
+		if (*s != (unsigned char)c)
+		{
+			++i;
+			while (*s && *s != (unsigned char)c)
+				++s;
+		}
+		else
+			++s;
+	}
+	return (i);
+}

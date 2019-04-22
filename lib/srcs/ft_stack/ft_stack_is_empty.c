@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_stack_is_empty.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/17 22:18:04 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/20 18:59:10 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_stack.h"
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+int			ft_stack_is_empty(t_stack *stack)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
-
-#endif
+	if (!stack || !(stack->top))
+		return (1);
+	return (0);
+}

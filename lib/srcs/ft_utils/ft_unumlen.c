@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_unumlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2018/12/27 23:43:51 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/07 22:58:17 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include <stddef.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+size_t		ft_unumlen(unsigned long long int n)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	size_t	len;
 
-#endif
+	len = 1;
+	while (n >= 10)
+	{
+		n = n / 10;
+		++len;
+	}
+	return (len);
+}

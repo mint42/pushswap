@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_strshift.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/07 15:42:49 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/07 23:10:38 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_str.h"
+#include <stddef.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+char	*ft_strpad(char **s, int start, size_t len, char c)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	char	*str;
+	char	*cur;
 
-#endif
+	str = ft_strinit(c, len);
+	cur = *s;
+	if (!str)
+		return (0);
+	while (cur && *cur && len)
+	{
+		str[start] = *cur;
+		++cur;
+		++start;
+		--len;
+	}
+	ft_strdel(s);
+	return (str);
+}

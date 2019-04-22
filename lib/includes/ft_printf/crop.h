@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   crop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/07 23:33:49 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 17:45:09 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef CROP_H
+# define CROP_H
 
-# define TOTAL_OPS (11)
+# include "tsub.h"
+# include <stddef.h>
 
-static const char	*g_all_ops[TOTAL_OPS + 1] =
-{
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+char				*crop_di(t_sub *sub);
+char				*crop_bouxp(t_sub *sub);
+char				*crop_efg(t_sub *sub);
+char				*crop_csp(t_sub *sub);
+char				*crop_unicode(t_sub *sub);
 
 #endif

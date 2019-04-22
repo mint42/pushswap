@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_enqueue.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/20 12:36:44 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/20 12:50:40 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_queue.h"
+#include "ft_mem.h"
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+void	ft_enqueue(t_queue *queue, void *content)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	t_qnode		*node;
 
-#endif
+	if (!queue)
+		return ;
+	node = (t_qnode *)ft_memalloc(sizeof(t_qnode));
+	if (!node)
+		return ;
+	node->content = content;
+	node->next = 0;
+	if (!(queue->first))
+	{
+		queue->first = node;
+		queue->last = node;
+	}
+	else
+	{
+		queue->last->next = node;
+		queue->last = queue->last->next;
+	}
+}

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_lstinit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/03/29 19:10:41 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 21:41:00 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_list.h"
+#include "ft_mem.h"
+#include <stddef.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+t_list	*ft_lstinit(void *content, size_t content_size)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	t_list *node;
 
-#endif
+	node = (t_list *)ft_memalloc(sizeof(t_list));
+	if (!node)
+		return (0);
+	node->next = 0;
+	if (!content)
+	{
+		node->content = 0;
+		node->content_size = 0;
+		return (node);
+	}
+	node->content = content;
+	node->content_size = content_size;
+	return (node);
+}

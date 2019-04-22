@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_treeinit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/15 04:07:59 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 03:25:15 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "ft_binarytree.h"
+#include "ft_mem.h"
+#include <stdlib.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+t_binarytree	*ft_treeinit(void *content, size_t content_size)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	t_binarytree	*node;
 
-#endif
+	node = (t_binarytree *)ft_memalloc(sizeof(t_binarytree));
+	if (!node)
+		return (0);
+	node->content = content;
+	node->content_size = content_size;
+	node->left = 0;
+	node->right = 0;
+	return (node);
+}

@@ -6,47 +6,45 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2018/09/07 19:54:47 by rreedy           ###   ########.fr        #
+#    Updated: 2019/04/22 00:14:27 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= checker
-PSWAP		:= pushswap
-LIBFT		:= libftprintf
-LIBSTACK	:= libstack
+CHEKR := checker
+PSWAP := pushswap
+STACK := stack
+LIB := lib/libft.a
 
-CHECK_OBJS	:= $(patsubst %.c,%.o,$(wildcard ./srcs/$(NAME)/*.c))
-PSWAP_OBJS	:= $(patsubst %.c,%.o,$(wildcard ./srcs/$(PSWAP)/*.c))
+CHECK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(CHEKR)/*.c))
+PSWAP_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(PSWAP)/*.c))
+STACK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/$(STACK)/*.c))
 
-PRINT_OBJS	:= $(patsubst %.c,%.o,$(wildcard ./$(LIBFT)/srcs/ft_printf/*.c))
-LIBFT_OBJS	:= $(patsubst %.c,%.o,$(wildcard ./$(LIBFT)/srcs/*.c))
-STACK_OBJS	:= $(patsubst %.c,%.o,$(wildcard ./$(LIBSTACK)/srcs/*.c))
+CC := gcc
+INCLUDES := -I./includes -I./lib/includes -I./lib/includes/ft_printf
+CFLAGS += -g -Wall -Wextra -Werror $(INCLUDES)
+LFLAGS += -L./lib -lft
 
-CFLAGS		+= -Wall -Wextra -Werror -I./includes -I./$(LIBFT)/includes -I./$(LIBSTACK)/includes
-LFLAGS		+= -L./ -lftprintf -lstack
+.PHONY: all clean fclean re name
 
-.PHONY: all clean fclean re
+all: name
 
-all: $(LIBFT).a $(LIBSTACK).a $(NAME) $(PSWAP)
+name: $(CHEKR) $(PSWAP)
 
-$(NAME): $(LIBFT).a $(LIBSTACK).a $(CHECK_OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(CHECK_OBJS) $(LFLAGS)
+$(CHEKR): $(LIB) $(STACK_OBJS) $(CHECK_OBJS)
+	$(CC) $(CFLAGS) $(STACK_OBJS) $(CHECK_OBJS) -o $(CHEKR) $(LFLAGS)
 
-$(PSWAP): $(LIBFT).a $(LIBSTACK).a $(PSWAP_OBJS)
-	$(CC) $(CFLAGS) -o $(PSWAP) $(PSWAP_OBJS) $(LFLAGS)
+$(PSWAP): $(LIB) $(STACK_OBJS) $(PSWAP_OBJS)
+	$(CC) $(CFLAGS) $(STACK_OBJS) $(PSWAP_OBJS) -o $(PSWAP) $(LFLAGS)
 
-$(LIBFT).a: $(PRINT_OBJS) $(LIBFT_OBJS)
-	ar rc $(LIBFT).a $(PRINT_OBJS) $(LIBFT_OBJS)
-	ranlib $(LIBFT).a
-
-$(LIBSTACK).a: $(STACK_OBJS) $(LIBFT_OBJS)
-	ar rc $(LIBSTACK).a $(STACK_OBJS) $(LIBFT_OBJS)
-	ranlib $(LIBSTACK).a
+$(LIB):
+	@- make -C lib/ all
 
 clean:
-	@- $(RM) $(PSWAP_OBJS) $(CHECK_OBJS) $(PRINT_OBJS) $(LIBFT_OBJS) $(STACK_OBJS)
+	@- $(RM) $(CHECK_OBJS) $(PSWAP_OBJS) $(STACK_OBJS)
+	@- make -C lib/ clean
 
 fclean: clean
-	@- $(RM) $(NAME) $(PSWAP) $(LIBFT).a $(LIBSTACK).a
+	@- $(RM) $(PSWAP) $(CHEKR)
+	@- make -C lib/ fclean
 
 re: fclean all

@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_double_array.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/07 17:00:36 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 19:04:12 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef FT_DOUBLE_ARRAY_H
+# define FT_DOUBLE_ARRAY_H
 
-# define TOTAL_OPS (11)
+# include <stddef.h>
 
-static const char	*g_all_ops[TOTAL_OPS + 1] =
-{
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+void		ft_delete_double_array(char ***double_array);
+char		**ft_dup_double_array(char **double_array);
+size_t		ft_len_double_array(char **double_array);
+void		ft_print_double_array(char **double_array);
 
 #endif

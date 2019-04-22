@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   issortr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2018/09/25 10:40:02 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/21 23:50:24 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#include "stack.h"
+#include "ft_stack.h"
+#include <stddef.h>
 
-# define TOTAL_OPS (11)
-
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+int		issortr(t_stack *stack)
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	t_snode		*cur;
+	size_t		len;
+	size_t		ro;
 
-#endif
+	if (!stack || !(stack->top))
+		return (-1);
+	len = 0;
+	ro = 0;
+	cur = stack->top;
+	while (cur->next)
+	{
+		if (NUM(cur) < NUM(cur->next))
+		{
+			if (!ro)
+				ro = len;
+			else 
+				return (-1);
+		}
+		++len;
+		cur = cur->next;
+	}
+	return (ro);
+}

@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/07 23:31:32 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 17:45:45 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef PARSE_H
+# define PARSE_H
 
-# define TOTAL_OPS (11)
+# include <stdarg.h>
 
-static const char	*g_all_ops[TOTAL_OPS + 1] =
-{
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+char		*parse(t_sub *sub, va_list ap);
+char		*parse_bouxp(t_sub *sub, va_list ap);
+char		*parse_di(t_sub *sub, va_list ap);
+char		*parse_efg(t_sub *sub, va_list ap);
+char		*parse_unicode(t_sub *sub, va_list ap);
+char		*parse_csp(t_sub *sub, va_list ap);
 
 #endif

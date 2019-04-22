@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2018/06/26 12:22:23 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/07 22:58:17 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# define TOTAL_OPS (11)
+# define BUFF_SIZE 8
+# define BUF(lst) (((t_file *)(lst->content))->buf)
 
-static const char	*g_all_ops[TOTAL_OPS + 1] =
+typedef struct	s_file
 {
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+	char		*buf;
+	int			fide;
+}				t_file;
+
+int				get_next_line(const int fd, char **line);
+int				get_next_char(const int fd, char c, char **line);
 
 #endif

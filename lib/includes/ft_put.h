@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_put.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/27 09:59:13 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/21 05:52:20 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/07 17:06:01 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/17 17:44:56 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
-# define CHECKER_H
+#ifndef FT_PUT_H
+# define FT_PUT_H
 
-# define TOTAL_OPS (11)
+void		ft_putchar(char c);
+void		ft_putchar_fd(char c, int fd);
 
-static const char	*g_all_ops[TOTAL_OPS + 1] =
-{
-	"pa",
-	"pb",
-	"sa",
-	"sb",
-	"ss",
-	"ra",
-	"rb",
-	"rr",
-	"rra",
-	"rrb",
-	"rrr",
-	0,
-};
+void		ft_putendl(const char *s);
+void		ft_putendl_fd(const char *s, int fd);
+
+void		ft_putnbr(int n);
+void		ft_putnbr_fd(int n, int fd);
+
+void		ft_putstr(const char *s);
+void		ft_putstr_fd(const char *s, int fd);
 
 #endif

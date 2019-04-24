@@ -6,15 +6,16 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:52:08 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 06:07:37 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/24 08:18:42 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "ft_stack.h"
 #include "ft_utils.h"
+#include "ft_printf.h"
 
-void	rra(t_stack *a, t_stack *b)
+void	rra(t_stack *a, t_stack *b, int print)
 {
 	t_snode		*bottom;
 	t_snode		*cur;
@@ -30,9 +31,11 @@ void	rra(t_stack *a, t_stack *b)
 	bottom->next = a->top->next;
 	a->top->next = bottom;
 	ft_swap(&NUM(a->top), &NUM(bottom));
+	if (print)
+		ft_printf("rra\n");
 }
 
-void	rrb(t_stack *a, t_stack *b)
+void	rrb(t_stack *a, t_stack *b, int print)
 {
 	t_snode		*bottom;
 	t_snode		*cur;
@@ -48,10 +51,14 @@ void	rrb(t_stack *a, t_stack *b)
 	bottom->next = b->top->next;
 	b->top->next = bottom;
 	ft_swap(&NUM(b->top), &NUM(bottom));
+	if (print)
+		ft_printf("rrb\n");
 }
 
-void	rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b, int print)
 {
-	rra(a, b);
-	rrb(a, b);
+	rra(a, b, 0);
+	rrb(a, b, 0);
+	if (print)
+		ft_printf("rrr\n");
 }

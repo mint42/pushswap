@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 06:04:31 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/24 06:48:33 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		get_operations(t_stack *ops)
 		ft_stack_push(ops, (void *)i);
 		if (*i == TOTAL_OPS)
 			return (0);
-		ra(ops, 0);
+		ra(ops, 0, 0);
 		ft_strdel(&input);
 	}
 	return (1);
@@ -70,7 +70,7 @@ static void		execute(t_stack *a, t_stack *b, t_stack *ops)
 	while (cur)
 	{
 		ft_printf("%s\n", g_all_ops[NUM(cur)]);
-		execute_op[NUM(cur)](a, b);
+		execute_op[NUM(cur)](a, b, 0);
 		print_stack(a);
 		print_stack(b);
 		cur = cur->next;

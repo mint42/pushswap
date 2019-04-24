@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 10:40:02 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 04:16:05 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/22 06:37:45 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ int		issortr(t_stack *stack)
 		++len;
 		cur = cur->next;
 	}
+	if (ro && (NUM(stack->top) > NUM(cur)))
+		return (-1);
 	return (ro);
 }

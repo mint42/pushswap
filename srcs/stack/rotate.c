@@ -6,13 +6,14 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:50:39 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 04:04:43 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/24 08:19:25 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
+#include "ft_printf.h"
 
-void	ra(t_stack *a, t_stack *b)
+void	ra(t_stack *a, t_stack *b, int print)
 {
 	t_snode		*top;
 	t_snode		*cur;
@@ -27,9 +28,11 @@ void	ra(t_stack *a, t_stack *b)
 	a->top = a->top->next;
 	cur->next = top;
 	top->next = 0;
+	if (print)
+		ft_printf("ra\n");
 }
 
-void	rb(t_stack *a, t_stack *b)
+void	rb(t_stack *a, t_stack *b, int print)
 {
 	t_snode		*top;
 	t_snode		*cur;
@@ -44,10 +47,14 @@ void	rb(t_stack *a, t_stack *b)
 	b->top = b->top->next;
 	cur->next = top;
 	top->next = 0;
+	if (print)
+		ft_printf("rb\n");
 }
 
-void	rr(t_stack *a, t_stack *b)
+void	rr(t_stack *a, t_stack *b, int print)
 {
-	ra(a, b);
-	rb(a, b);
+	ra(a, b, 0);
+	rb(a, b, 0);
+	if (print)
+		ft_printf("rr\n");
 }

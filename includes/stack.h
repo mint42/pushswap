@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 05:48:46 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 03:30:31 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/24 06:47:40 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int			stack_len(t_stack *stack);
 int			issort(t_stack *stack);
 int			issortr(t_stack *stack);
 void		print_stack(t_stack *stack);
-void		pa(t_stack *a, t_stack *b);
-void		pb(t_stack *a, t_stack *b);
-void		sa(t_stack *a, t_stack *b);
-void		sb(t_stack *a, t_stack *b);
-void		ss(t_stack *a, t_stack *b);
-void		ra(t_stack *a, t_stack *b);
-void		rb(t_stack *a, t_stack *b);
-void		rr(t_stack *a, t_stack *b);
-void		rra(t_stack *a, t_stack *b);
-void		rrb(t_stack *a, t_stack *b);
-void		rrr(t_stack *a, t_stack *b);
+void		pa(t_stack *a, t_stack *b, int print);
+void		pb(t_stack *a, t_stack *b, int print);
+void		sa(t_stack *a, t_stack *b, int print);
+void		sb(t_stack *a, t_stack *b, int print);
+void		ss(t_stack *a, t_stack *b, int print);
+void		ra(t_stack *a, t_stack *b, int print);
+void		rb(t_stack *a, t_stack *b, int print);
+void		rr(t_stack *a, t_stack *b, int print);
+void		rra(t_stack *a, t_stack *b, int print);
+void		rrb(t_stack *a, t_stack *b, int print);
+void		rrr(t_stack *a, t_stack *b, int print);
 
 #endif

@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack.c                                      :+:      :+:    :+:   */
+/*   stack_extremes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/20 13:23:50 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/25 09:07:03 by rreedy           ###   ########.fr       */
+/*   Created: 2019/04/25 06:29:04 by rreedy            #+#    #+#             */
+/*   Updated: 2019/04/25 06:38:16 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-#include "ft_stack.h"
-#include "ft_printf.h"
 
-void	print_stack(t_stack *stack, int len)
+void	stack_extremes(t_stack *stack, int len, int *max, int *min)
 {
 	t_snode		*cur;
 
-	ft_printf("top -> ");
 	if (!stack || !(stack->top))
-	{
-		ft_printf("\n");
 		return ;
-	}
 	cur = stack->top;
+	*max = NUM(cur);
+	*min = NUM(cur);
 	while (cur && len)
 	{
-		ft_printf("%d ", NUM(cur));
+		if (NUM(cur) > *max)
+			*max = NUM(cur);
+		if (NUM(cur) < *min)
+			*min = NUM(cur);
 		cur = cur->next;
-		--len;
 	}
-	ft_printf("<- bottom\n");
 }

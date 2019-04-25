@@ -6,46 +6,50 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 07:03:14 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/24 10:22:24 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/25 06:38:51 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static long		get_sum(t_snode *stack)
+/*
+static long		get_sum(t_snode *stack, int len)
 {
 	long		sum;
 	t_snode		*cur;
 
 	sum = 0;
 	cur = stack;
-	while (cur)
+	while (cur && len)
 	{
 		sum = sum + NUM(cur);
 		cur = cur->next;
+		--len;
 	}
 	return (sum);
 }
+*/
 
-int				find_pivot(t_stack *stack)
+int				find_pivot(t_stack *stack, int len)
 {
 	t_snode		*cur;
 	int			pivot;
-	long		left;
-	long		right;
+	int			max;
+	int			min;
 
-	if (!stack || !(stack->top))
+	if (!stack || !(stack->top) || !len)
 		return (-1);
+	max = 0;
+	min = 0;
+	stack_extremes(stack, len, &max, &min);
 	cur = stack->top;
-	left = 0;
 	pivot = NUM(cur);
-	cur = cur->next;
-	right = get_sum(cur);
-	while (cur && left < right)
+	while (cur && len)
 	{
-		left = left + pivot;
 		pivot = NUM(cur);
-		right = right - pivot;
+		if (pivot != max && pivot != min)
+			break ;
+		--len;
 		cur = cur->next;
 	}
 	return (pivot);

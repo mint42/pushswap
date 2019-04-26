@@ -6,51 +6,67 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 07:03:14 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/25 06:38:51 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/26 04:26:27 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pushswap.h"
 #include "stack.h"
+#include "ft_stack.h"
+#include <unistd.h>
+#include <fcntl.h>
 
-/*
-static long		get_sum(t_snode *stack, int len)
+int			get_pivot(t_stack *stack, int index)
 {
-	long		sum;
 	t_snode		*cur;
+	int			i;
 
-	sum = 0;
-	cur = stack;
-	while (cur && len)
+	i = 0;
+	cur = stack->top;
+	while (cur && i < index)
 	{
-		sum = sum + NUM(cur);
 		cur = cur->next;
-		--len;
+		++i;
 	}
-	return (sum);
+	if (cur)
+		return (NUM(cur));
+	else
+		return (-1);
 }
-*/
 
-int				find_pivot(t_stack *stack, int len)
+int			get_index(int fd, int len)
 {
-	t_snode		*cur;
+	size_t	buf;
+	int		nbytes;
+
+	nbytes = 8;
+	if (read(fd, (void *)&buf, nbytes) != nbytes)
+		return (-1);
+	return (buf % len);
+}
+
+int			find_pivot(t_stack *stack, int len, int aorb)
+{
 	int			pivot;
-	int			max;
-	int			min;
+	int			fd;
+	int			index;
 
 	if (!stack || !(stack->top) || !len)
 		return (-1);
-	max = 0;
-	min = 0;
-	stack_extremes(stack, len, &max, &min);
-	cur = stack->top;
-	pivot = NUM(cur);
-	while (cur && len)
+	if (len == 2)
 	{
-		pivot = NUM(cur);
-		if (pivot != max && pivot != min)
-			break ;
-		--len;
-		cur = cur->next;
+		if (aorb == A && NUM(stack->top) < NUM(stack->top->next))
+			return (NUM(stack->top));
+		else
+			return (NUM(stack->top->next));
 	}
+	fd = open("/dev/urandom", O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	index = get_index(fd, len);
+	if (index == -1)
+		return (-1);
+	pivot = get_pivot(stack, index);
+	close(fd);
 	return (pivot);
 }

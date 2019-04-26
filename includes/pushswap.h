@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:16:20 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/25 05:41:06 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/26 04:24:55 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_stack		t_stack;
 
-int		find_pivot(t_stack *stack, int len);
+int		find_pivot(t_stack *stack, int len, int aorb);
 void	sort_a(t_stack *a, t_stack *b, int half);
 
 #endif

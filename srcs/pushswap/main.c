@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/25 05:40:54 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/26 03:37:49 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int		main(int argc, char **argv)
 	else
 		ft_printf("Error\n");
 	ft_printf("finished\n");
-	print_stack(a);
-	print_stack(b);
+	print_stack(a, stack_len(a));
+	print_stack(b, stack_len(b));
 	ft_stack_del(&a, free);
 	ft_stack_del(&b, free);
 	return (0);

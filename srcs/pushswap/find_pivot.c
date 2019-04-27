@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 07:03:14 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/26 04:26:27 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/26 21:26:41 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int			find_pivot(t_stack *stack, int len, int aorb)
 		return (-1);
 	if (len == 2)
 	{
-		if (aorb == A && NUM(stack->top) < NUM(stack->top->next))
+		if ((aorb == A && NUM(stack->top) < NUM(stack->top->next)) ||
+				(aorb == B && (NUM(stack->top) > NUM(stack->top->next))))
 			return (NUM(stack->top));
 		else
 			return (NUM(stack->top->next));

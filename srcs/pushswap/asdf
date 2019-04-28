@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 09:47:42 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/23 22:39:05 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/28 03:49:11 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,32 @@ void	sorta(t_stack *a, t_stack *b)
 		rot(a, ro, 'a');
 }
 
-void	sortb(t_stack *b, t_stack *a)
+void	insertion(t_stack *b, t_stack *a)
+{
+	int		ro;
+
+	ro = -1;
+	while (b && b->top)
+	{
+		ro = issortr(b);
+		if (b->top && b->top->next && NUM(b->top) < NUM(b->top->next))
+		{
+			sb(a, b);
+			ft_printf("sb\n");
+		}
+		else
+		{
+			pa(a, b);
+			ft_printf("pa\n");
+			if (issort(a) >= 0)
+				sorta(a, b);
+		}
+	}
+	if (ro > 0)
+		rot(b, ro, 'b');
+}
+
+void	bubblesort_b(t_stack *b, t_stack *a)
 {
 	int		ro;
 

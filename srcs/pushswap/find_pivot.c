@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 07:03:14 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/26 21:26:41 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/04/28 03:09:32 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,23 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-int			get_pivot(t_stack *stack, int index)
+
+static int			get_random_pivot(t_stack *stack, int fd, int len)
 {
 	t_snode		*cur;
+	size_t		buf;
+	int			nbytes;
 	int			i;
 
-	i = 0;
+	nbytes = 8;
+	if (read(fd, (void *)&buf, nbytes) != nbytes)
+		return (-1);
+	i = buf % len;
 	cur = stack->top;
-	while (cur && i < index)
+	while (cur && i)
 	{
 		cur = cur->next;
-		++i;
+		--i;
 	}
 	if (cur)
 		return (NUM(cur));
@@ -34,22 +40,34 @@ int			get_pivot(t_stack *stack, int index)
 		return (-1);
 }
 
-int			get_index(int fd, int len)
+static int			get_pivot(t_stack *stack, int fd, int len)
 {
-	size_t	buf;
-	int		nbytes;
+	int			one;
+	int			two;
+	int			three;
 
-	nbytes = 8;
-	if (read(fd, (void *)&buf, nbytes) != nbytes)
-		return (-1);
-	return (buf % len);
+	one = 0;
+	two = 0;
+	three = 0;
+	while (one == two || one == three || two == three)
+	{
+		one = get_random_pivot(stack, fd, len);
+		two = get_random_pivot(stack, fd, len);
+		three = get_random_pivot(stack, fd, len);
+		if (one == -1 || two == -1 || three == -1)
+			return (-1);
+	}
+	if ((two < one && one < three) || (three < one && one < two))
+		return (one);
+	if ((one < two && two < three) || (three < two && two < one))
+		return (two);
+	return (three);
 }
 
 int			find_pivot(t_stack *stack, int len, int aorb)
 {
 	int			pivot;
 	int			fd;
-	int			index;
 
 	if (!stack || !(stack->top) || !len)
 		return (-1);
@@ -64,10 +82,7 @@ int			find_pivot(t_stack *stack, int len, int aorb)
 	fd = open("/dev/urandom", O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	index = get_index(fd, len);
-	if (index == -1)
-		return (-1);
-	pivot = get_pivot(stack, index);
+	pivot = get_pivot(stack, fd, len);
 	close(fd);
 	return (pivot);
 }

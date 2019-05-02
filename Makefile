@@ -6,7 +6,7 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2019/04/22 03:34:54 by rreedy           ###   ########.fr        #
+#    Updated: 2019/05/02 02:30:34 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ PSWAP_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/pushswap/*.c))
 STACK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/stack/*.c))
 
 CC := gcc
-INCLUDES := -I./includes -I./lib/includes -I./lib/includes/ft_printf
+INCLUDES := -I./includes/pushswap -I./includes/checker -I./includes/stack -I./lib/includes -I./lib/includes/ft_printf
 CFLAGS += -g -Wall -Wextra -Werror $(INCLUDES)
 LFLAGS += -L./lib -lft
 

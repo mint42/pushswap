@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:23 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/28 04:12:35 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/02 02:50:12 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,27 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-/*
-static int		solve_three_a(t_stack *a, t_stack *b, int len_a)
+static void		undo_rotations(t_stack *stack, int rots, int aorb)
 {
-	if (stack_len(a) > 1)
+	if (aorb == STACK_A)
 	{
-		ra(a, b, 1);
-		return (0);
+		while (rots)
+		{
+			rra(stack, 0, 1);
+			--rots;
+		}
 	}
-	
-}
-
-static int		solve_three_b(t_stack *a, t_stack *b, int len_b)
-{
-
-}
-*/
-
-static void		undo_rotations_a(t_stack *a, int rots_a)
-{
-	while (rots_a)
+	else
 	{
-		rra(a, 0, 1);
-		--rots_a;
+		while (rots)
+		{
+			rrb(0, stack, 1);
+			--rots;
+		}
 	}
 }
 
-static void		undo_rotations_b(t_stack *b, int rots_b)
-{
-	while (rots_b)
-	{
-		rrb(0, b, 1);
-		--rots_b;
-	}
-}
-
-static int		quicksort_a(t_stack *a, t_stack *b, int len_a)
+int				quicksort_a(t_stack *a, t_stack *b, int len_a)
 {
 	int		rots_a;
 	int		pivot;
@@ -63,9 +48,7 @@ static int		quicksort_a(t_stack *a, t_stack *b, int len_a)
 			ra(a, b, 1);
 		return (0);
 	}
-//	if (len_a <= 3)
-//		return (solve_three_a(a, b, len));
-	pivot = find_pivot(a, len_a, A);
+	pivot = find_pivot(a, len_a, STACK_A);
 	if (pivot == -1)
 		return (0);
 	rots_a = 0;
@@ -84,11 +67,11 @@ static int		quicksort_a(t_stack *a, t_stack *b, int len_a)
 		}
 		--i;
 	}
-	undo_rotations_a(a, rots_a);
+	undo_rotations(a, rots_a, STACK_A);
 	return (len_a);
 }
 
-static int		quicksort_b(t_stack *a, t_stack *b, int len_b)
+int				quicksort_b(t_stack *a, t_stack *b, int len_b)
 {
 	int		rots_b;
 	int		pivot;
@@ -100,9 +83,7 @@ static int		quicksort_b(t_stack *a, t_stack *b, int len_b)
 		ra(a, b, 1);
 		return (0);
 	}
-//	if (len_b <= 3)
-//		return (solve_three_b(a, b, len));
-	pivot = find_pivot(b, len_b, B);
+	pivot = find_pivot(b, len_b, STACK_B);
 	if (pivot == -1)
 		return (0);
 	rots_b = 0;
@@ -121,42 +102,6 @@ static int		quicksort_b(t_stack *a, t_stack *b, int len_b)
 		}
 		--i;
 	}
-	undo_rotations_b(b, rots_b);
+	undo_rotations(b, rots_b, STACK_B);
 	return (len_b);
-}
-
-static void		sort_b(t_stack *a, t_stack *b, int len)
-{
-	int		len_a;
-	int		len_b;
-
-	if (!b || !b->top)
-		return ;
-	len_b = quicksort_b(a, b, len);
-	if (len_b == 0)
-		len_a = 0;
-	else
-		len_a = len - len_b;
-	if (len_a != 0)
-		sort_a(a, b, len_a);
-	if (len_b != 0)
-		sort_b(a, b, len_b);
-}
-
-void			sort_a(t_stack *a, t_stack *b, int len)
-{
-	int		len_a;
-	int		len_b;
-
-	if (!a || !a->top)
-		return ;
-	len_a = quicksort_a(a, b, len);
-	if (len_a == 0)
-		len_b = 0;
-	else
-		len_b = len - len_a;
-	if (len_a != 0)
-		sort_a(a, b, len_a);
-	if (len_b != 0)
-		sort_b(a, b, len_b);
 }

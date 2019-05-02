@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_pivot.c                                       :+:      :+:    :+:   */
+/*   pivot.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/24 07:03:14 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/28 03:09:32 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/02 02:45:51 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/02 02:49:54 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ft_stack.h"
 #include <unistd.h>
 #include <fcntl.h>
-
 
 static int			get_random_pivot(t_stack *stack, int fd, int len)
 {
@@ -46,17 +45,15 @@ static int			get_pivot(t_stack *stack, int fd, int len)
 	int			two;
 	int			three;
 
-	one = 0;
-	two = 0;
-	three = 0;
-	while (one == two || one == three || two == three)
-	{
-		one = get_random_pivot(stack, fd, len);
+	one = get_random_pivot(stack, fd, len);
+	two = one;
+	three = one;
+	while (one == two)
 		two = get_random_pivot(stack, fd, len);
+	while (one == three || two == three)
 		three = get_random_pivot(stack, fd, len);
-		if (one == -1 || two == -1 || three == -1)
-			return (-1);
-	}
+	if (one == -1 || two == -1 || three == -1)
+		return (-1);
 	if ((two < one && one < three) || (three < one && one < two))
 		return (one);
 	if ((one < two && two < three) || (three < two && two < one))
@@ -73,8 +70,8 @@ int			find_pivot(t_stack *stack, int len, int aorb)
 		return (-1);
 	if (len == 2)
 	{
-		if ((aorb == A && NUM(stack->top) < NUM(stack->top->next)) ||
-				(aorb == B && (NUM(stack->top) > NUM(stack->top->next))))
+		if ((aorb == STACK_A && NUM(stack->top) < NUM(stack->top->next)) ||
+			(aorb == STACK_B && NUM(stack->top) > NUM(stack->top->next)))
 			return (NUM(stack->top));
 		else
 			return (NUM(stack->top->next));

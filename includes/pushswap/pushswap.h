@@ -6,15 +6,15 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 17:16:20 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/26 04:24:55 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/02 02:25:44 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
 
-# define A (1)
-# define B (2)
+# define STACK_A (1)
+# define STACK_B (2)
 
 typedef struct s_stack		t_stack;
 

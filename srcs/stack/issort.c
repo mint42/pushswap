@@ -6,31 +6,32 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 08:01:30 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 06:36:41 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/02 04:47:12 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "ft_stack.h"
 
-int		issort(t_stack *stack)
+int		issort(t_stack *stack, int len)
 {
 	t_snode		*cur;
-	int			len;
+	int			rlen;
 	int			ro;
 
 	if (!stack || !(stack->top))
 		return (-1);
-	len = 0;
+	rlen = 0;
 	ro = 0;
 	cur = stack->top;
-	while (cur->next)
+	while (cur->next && len)
 	{
-		++len;
+		++clen;
+		--len;
 		if (NUM(cur) > NUM(cur->next))
 		{
 			if (!ro)
-				ro = len;
+				ro = rlen;
 			else
 				return (-1);
 		}

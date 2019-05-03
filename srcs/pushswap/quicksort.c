@@ -6,15 +6,13 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:23 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/02 02:50:12 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/03 04:28:16 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
 #include "stack.h"
+#include "quicksort.h"
 #include "ft_stack.h"
-#include "ft_printf.h"
-#include <stdlib.h>
 
 static void		undo_rotations(t_stack *stack, int rots, int aorb)
 {
@@ -43,19 +41,14 @@ int				quicksort_a(t_stack *a, t_stack *b, int len_a)
 	int		i;
 
 	if (len_a == 1)
-	{
-		if (stack_len(a) > 1)
-			ra(a, b, 1);
 		return (0);
-	}
-	pivot = find_pivot(a, len_a, STACK_A);
-	if (pivot == -1)
+	if ((pivot = get_pivot(a, len_a, STACK_A)) == -1)
 		return (0);
 	rots_a = 0;
 	i = len_a;
 	while (a->top && i)
 	{
-		if (NUM(a->top) > pivot)
+		if (NUM(a->top) < pivot)
 		{
 			pb(a, b, 1);
 			--len_a;
@@ -80,17 +73,15 @@ int				quicksort_b(t_stack *a, t_stack *b, int len_b)
 	if (len_b == 1)
 	{
 		pa(a, b, 1);
-		ra(a, b, 1);
 		return (0);
 	}
-	pivot = find_pivot(b, len_b, STACK_B);
-	if (pivot == -1)
+	if ((pivot = get_pivot(b, len_b, STACK_B)) == -1)
 		return (0);
 	rots_b = 0;
 	i = len_b;
 	while (b->top && i)
 	{
-		if (NUM(b->top) < pivot)
+		if (NUM(b->top) > pivot)
 		{
 			pa(a, b, 1);
 			--len_b;

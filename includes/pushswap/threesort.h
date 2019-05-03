@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.h                                       :+:      :+:    :+:   */
+/*   threesort.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 03:56:25 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/02 04:17:59 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/03 00:02:00 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/03 00:02:19 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SORT_THREE_H
-# define SORT_THREE_H
+#ifndef THREESORT_H
+# define THREESORT_H
 
 # include "stack.h"
 
@@ -21,5 +21,5 @@
 
 typedef struct s_stack		t_stack;
 
-int		sort_three(t_stack *a, int len);
+int		threesort(t_stack *a, int len);
 #endif

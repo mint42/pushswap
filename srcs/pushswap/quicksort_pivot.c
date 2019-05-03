@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pivot.c                                            :+:      :+:    :+:   */
+/*   quicksort_pivot.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 02:45:51 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/02 02:49:54 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/03 04:30:26 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/03 04:30:31 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
 #include "stack.h"
+#include "quicksort.h"
 #include "ft_stack.h"
 #include <unistd.h>
 #include <fcntl.h>
@@ -39,7 +39,7 @@ static int			get_random_pivot(t_stack *stack, int fd, int len)
 		return (-1);
 }
 
-static int			get_pivot(t_stack *stack, int fd, int len)
+static int			pick_pivot(t_stack *stack, int fd, int len)
 {
 	int			one;
 	int			two;
@@ -61,7 +61,7 @@ static int			get_pivot(t_stack *stack, int fd, int len)
 	return (three);
 }
 
-int			find_pivot(t_stack *stack, int len, int aorb)
+int					get_pivot(t_stack *stack, int len, int aorb)
 {
 	int			pivot;
 	int			fd;
@@ -70,8 +70,8 @@ int			find_pivot(t_stack *stack, int len, int aorb)
 		return (-1);
 	if (len == 2)
 	{
-		if ((aorb == STACK_A && NUM(stack->top) < NUM(stack->top->next)) ||
-			(aorb == STACK_B && NUM(stack->top) > NUM(stack->top->next)))
+		if ((aorb == STACK_A && NUM(stack->top) > NUM(stack->top->next)) ||
+			(aorb == STACK_B && NUM(stack->top) < NUM(stack->top->next)))
 			return (NUM(stack->top));
 		else
 			return (NUM(stack->top->next));
@@ -79,7 +79,7 @@ int			find_pivot(t_stack *stack, int len, int aorb)
 	fd = open("/dev/urandom", O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	pivot = get_pivot(stack, fd, len);
+	pivot = pick_pivot(stack, fd, len);
 	close(fd);
 	return (pivot);
 }

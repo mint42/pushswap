@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 05:48:46 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/25 09:07:45 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/02 23:59:23 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int			get_stack(t_stack *stack, char **argv, int argc);
 int			stack_len(t_stack *stack);
-int			issort(t_stack *stack);
+int			issort(t_stack *stack, int len);
 int			issortr(t_stack *stack);
 void		stack_extremes(t_stack *stack, int len, int *max, int *min);
 void		print_stack(t_stack *stack, int len);

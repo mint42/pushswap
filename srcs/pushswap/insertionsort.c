@@ -1,0 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   insertionsort.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/03 01:36:34 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/03 04:31:41 by rreedy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "insertionsort.h"
+#include "stack.h"
+#include "ft_stack.h"
+
+static void		undo_rotations(t_stack *a, int rots)
+{
+	while (rots)
+	{
+		rra(a, 0, 1);
+		--rots;
+	}
+}
+
+int				insertionsort_a(t_stack *a, t_stack *b, int len_a, int len_b)
+{
+	if (!len_a || len_a == 1)
+		return (0);
+	while (len_a > 2 && !issort(a, len_a))
+	{
+		pb(a, b, 1);
+		--len_a;
+		++len_b;
+	}
+	if (NUM(a->top) > NUM(a->top->next))
+		sa(a, b, 1);
+	return (insertionsort_b(a, b, len_a, len_b));
+}
+
+int				insertionsort_b(t_stack *a, t_stack *b, int len_a, int len_b)
+{
+	int		rots;
+
+	if (!len_b)
+		return (0);
+	rots = 0;
+	while (len_b)
+	{
+		while (rots < len_a && NUM(a->top) < NUM(b->top))
+		{
+			ra(a, b, 1);
+			++rots;
+		}
+		while (rots && NUM(bottom(a)) > NUM(b->top))
+		{
+			rra(a, b, 1);
+			--rots;
+		}
+		pa(a, b, 1);
+		--len_b;
+		++len_a;
+	}
+	undo_rotations(a, rots);
+	return (0);
+}

@@ -6,13 +6,12 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 05:04:25 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 05:06:40 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 08:37:49 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
-
 
 typedef struct s_stack		t_stack;
 

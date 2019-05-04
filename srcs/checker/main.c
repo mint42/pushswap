@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 07:19:21 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 08:29:16 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		execute(t_stack *a, t_stack *b, t_stack *ops)
 	cur = ops->top;
 	while (cur)
 	{
-		execute_op[NUM(cur)](a, b, 1);
+		execute_op[NUM(cur)](a, b, 0);
 		cur = cur->next;
 	}
 }

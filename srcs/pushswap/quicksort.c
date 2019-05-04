@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:23 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 07:15:05 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 07:41:18 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		undo_rotations(t_stack *stack, int rots, int aorb)
 	}
 }
 
-int				quicksort_a(t_stack *a, t_stack *b, int len)
+int				quicksort_a(t_stack *a, t_stack *b, int len, int rr)
 {
 	int		rots;
 	int		pivot;
@@ -61,11 +61,12 @@ int				quicksort_a(t_stack *a, t_stack *b, int len)
 		}
 		--i;
 	}
-	undo_rotations(a, rots, STACK_A);
+	if (rr)
+		undo_rotations(a, rots, STACK_A);
 	return (len);
 }
 
-int				quicksort_b(t_stack *a, t_stack *b, int len)
+int				quicksort_b(t_stack *a, t_stack *b, int len, int rr)
 {
 	int		rots;
 	int		pivot;
@@ -89,6 +90,7 @@ int				quicksort_b(t_stack *a, t_stack *b, int len)
 		}
 		--i;
 	}
-	undo_rotations(b, rots, STACK_B);
+	if (rr)
+		undo_rotations(b, rots, STACK_B);
 	return (len);
 }

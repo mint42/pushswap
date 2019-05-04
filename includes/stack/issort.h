@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   issortr.c                                          :+:      :+:    :+:   */
+/*   sort.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 10:40:02 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/03 23:25:06 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/04 05:05:29 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/04 05:11:37 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
-#include "ft_stack.h"
-#include <stddef.h>
+#ifndef ISSORT_H
+# define ISSORT_H
 
-int		issortr(t_stack *stack)
-{
-	t_snode		*cur;
+# include "ft_stack.h"
 
-	if (!stack || !(stack->top))
-		return (0);
-	cur = stack->top;
-	while (cur->next)
-	{
-		if (NUM(cur) < NUM(cur->next))
-			return (0);
-		cur = cur->next;
-	}
-	return (1);
-}
+int		issort(t_stack *stack, int len);
+int		issortr(t_stack *stack, int len);
+int		issortro(t_stack *stack, int len);
+int		issortrro(t_stack *stack, int len);
+
+#endif

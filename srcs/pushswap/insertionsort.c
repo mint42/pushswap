@@ -6,12 +6,14 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 01:36:34 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 02:07:31 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 05:10:39 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "insertionsort.h"
 #include "stack.h"
+#include "operations.h"
+#include "issort.h"
 #include "ft_stack.h"
 
 static void		undo_rotations(t_stack *a, int rots)
@@ -47,8 +49,6 @@ int				insertionsort_b(t_stack *a, t_stack *b, int len_a, int len_b)
 	rots = 0;
 	while (len_b)
 	{
-		if (len_b > 1 && NUM(b->top) < NUM(b->top->next))
-			sb(0, b, 1);
 		while (rots < len_a && NUM(a->top) < NUM(b->top))
 		{
 			ra(a, 0, 1);

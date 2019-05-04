@@ -6,18 +6,19 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 02:09:21 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 07:27:06 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+#include "rotatesort.h"
 #include "threesort.h"
 #include "insertionsort.h"
 #include "quicksort.h"
+#include "issort.h"
 #include "ft_stack.h"
 #include "ft_printf.h"
 #include <stdlib.h>
-
 
 void		sort_b(t_stack *a, t_stack *b, int len)
 {
@@ -26,11 +27,13 @@ void		sort_b(t_stack *a, t_stack *b, int len)
 
 	if (!b || !b->top)
 		return ;
-//	if (issort(b, stack_len(b)) >= 0)
-//		len_b = rotate_b(b, stack_len(a));
-	if (len <= 3 && len == ft_stack_len(b))
+	if (issortrro(b, ft_stack_len(b)))
+		len_b = rotatesort_b(a, b, ft_stack_len(b));
+	else if (issortr(b, len))
+		len_b = rotatesort_b(a, b, len);
+	else if (len <= 3 && len == ft_stack_len(b))
 		len_b = threesort_b(a, b, len);
-	else if (len < 33)
+	else if (len < 25)
 		len_b = insertionsort_b(a, b, 0, len);
 	else
 		len_b = quicksort_b(a, b, len);
@@ -48,11 +51,13 @@ void		sort_a(t_stack *a, t_stack *b, int len)
 
 	if (!a || !a->top)
 		return ;
-//	if (issortro(a, stack_len(a)) >= 0)
-//		len_a = rotate_a(a, stack_len(a));
-	if (len <= 3 && len == ft_stack_len(a))
+	if (issortro(a, ft_stack_len(a)))
+		len_a = rotatesort_a(a, ft_stack_len(a));
+	else if (issort(a, len))
+		len_a = 0;
+	else if (len <= 3 && len == ft_stack_len(a))
 		len_a = threesort_a(a, len);
-	else if (len < 33)
+	else if (len < 25)
 		len_a = insertionsort_a(a, b, len, 0);
 	else
 		len_a = quicksort_a(a, b, len);

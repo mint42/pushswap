@@ -6,12 +6,14 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 01:19:08 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 07:19:21 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include "operations.h"
 #include "stack.h"
+#include "issort.h"
 #include "ft_stack.h"
 #include "ft_str.h"
 #include "ft_mem.h"
@@ -69,7 +71,7 @@ static void		execute(t_stack *a, t_stack *b, t_stack *ops)
 	cur = ops->top;
 	while (cur)
 	{
-		execute_op[NUM(cur)](a, b, 0);
+		execute_op[NUM(cur)](a, b, 1);
 		cur = cur->next;
 	}
 }

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_THIRD(a).c                                       :+:      :+:    :+:   */
+/*   threesort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/02 02:51:07 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 02:08:02 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/04 05:10:26 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/04 06:50:32 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "threesort.h"
+#include "operations.h"
 #include "stack.h"
 #include "ft_stack.h"
 
@@ -45,7 +46,7 @@ static void		twosort_b(t_stack *a, t_stack *b, int len_b)
 {
 	if (len_b == 2)
 	{
-		if (FIRST(b) > SECOND(b))
+		if (FIRST(b) < SECOND(b))
 			sb(0, b, 1);
 		pa(a, b, 1);
 	}

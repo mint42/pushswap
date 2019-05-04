@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 00:02:00 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/03 00:02:19 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/03 23:36:02 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 
 typedef struct s_stack		t_stack;
 
-int		threesort(t_stack *a, int len);
+int		threesort_a(t_stack *a, int len_a);
+int		threesort_b(t_stack *a, t_stack *b, int len_b);
 #endif

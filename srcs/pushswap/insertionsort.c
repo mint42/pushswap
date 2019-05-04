@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 01:36:34 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/03 04:31:41 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 02:07:31 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int				insertionsort_a(t_stack *a, t_stack *b, int len_a, int len_b)
 		--len_a;
 		++len_b;
 	}
-	if (NUM(a->top) > NUM(a->top->next))
-		sa(a, b, 1);
+	if (len_a > 1 && NUM(a->top) > NUM(a->top->next))
+		sa(a, 0, 1);
 	return (insertionsort_b(a, b, len_a, len_b));
 }
 
@@ -47,14 +47,16 @@ int				insertionsort_b(t_stack *a, t_stack *b, int len_a, int len_b)
 	rots = 0;
 	while (len_b)
 	{
+		if (len_b > 1 && NUM(b->top) < NUM(b->top->next))
+			sb(0, b, 1);
 		while (rots < len_a && NUM(a->top) < NUM(b->top))
 		{
-			ra(a, b, 1);
+			ra(a, 0, 1);
 			++rots;
 		}
-		while (rots && NUM(bottom(a)) > NUM(b->top))
+		while (rots && (*(int *)ft_stack_peek_bottom(a)) > NUM(b->top))
 		{
-			rra(a, b, 1);
+			rra(a, 0, 1);
 			--rots;
 		}
 		pa(a, b, 1);

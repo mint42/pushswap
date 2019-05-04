@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:54:49 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/24 08:19:40 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/03 23:25:06 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sa(t_stack *a, t_stack *b, int print)
 	if (!a || !(a->top) || !(a->top->next))
 		return ;
 	(void)b;
-	ft_swap(&NUM(a->top), &NUM(a->top->next));
+	ft_stack_swap(a);
 	if (print)
 		ft_printf("sa\n");
 }
@@ -30,15 +30,15 @@ void	sb(t_stack *a, t_stack *b, int print)
 	if (!b || !(b->top) || !(b->top->next))
 		return ;
 	(void)a;
-	ft_swap(&NUM(b->top), &NUM(b->top->next));
+	ft_stack_swap(b);
 	if (print)
 		ft_printf("sb\n");
 }
 
 void	ss(t_stack *a, t_stack *b, int print)
 {
-	sa(a, b, 0);
-	sb(a, b, 0);
+	sa(a, 0, 0);
+	sb(0, b, 0);
 	if (print)
 		ft_printf("ss\n");
 }

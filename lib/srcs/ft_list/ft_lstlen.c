@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   issortr.c                                          :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/25 10:40:02 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/03 23:25:06 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/03 23:10:54 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/03 23:16:21 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
-#include "ft_stack.h"
-#include <stddef.h>
+#include "ft_list.h"
 
-int		issortr(t_stack *stack)
+int		ft_lstlen(t_list *list)
 {
-	t_snode		*cur;
+	int		len;
 
-	if (!stack || !(stack->top))
-		return (0);
-	cur = stack->top;
-	while (cur->next)
+	len = 0;
+	while (list)
 	{
-		if (NUM(cur) < NUM(cur->next))
-			return (0);
-		cur = cur->next;
+		list = list->next;
+		++len;
 	}
-	return (1);
+	return (len);
 }

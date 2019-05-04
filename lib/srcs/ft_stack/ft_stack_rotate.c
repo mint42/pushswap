@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_extremes.c                                   :+:      :+:    :+:   */
+/*   ft_stack_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 06:29:04 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/25 06:38:16 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/03 22:40:25 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/04 00:49:59 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "ft_stack.h"
 
-void	stack_extremes(t_stack *stack, int len, int *max, int *min)
+void	ft_stack_rotate(t_stack *stack)
 {
-	t_snode		*cur;
+	t_snode		*rotatee;
 
-	if (!stack || !(stack->top))
+	if (!stack || !(stack->top) || !(stack->top->next) || !(stack->bottom))
 		return ;
-	cur = stack->top;
-	*max = NUM(cur);
-	*min = NUM(cur);
-	while (cur && len)
-	{
-		if (NUM(cur) > *max)
-			*max = NUM(cur);
-		if (NUM(cur) < *min)
-			*min = NUM(cur);
-		cur = cur->next;
-	}
+	rotatee = stack->top;
+	stack->top = stack->top->next;
+	stack->bottom->next = rotatee;
+	stack->bottom = stack->bottom->next;
+	stack->bottom->next = 0;
 }

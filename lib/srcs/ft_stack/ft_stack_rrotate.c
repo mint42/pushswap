@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_len.c                                        :+:      :+:    :+:   */
+/*   ft_stack_rrotate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/22 03:28:35 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/22 03:30:51 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/03 22:48:05 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/04 00:50:41 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stack.h"
 
-int		stack_len(t_stack *stack)
+void	ft_stack_rrotate(t_stack *stack)
 {
 	t_snode		*cur;
-	int			len;
 
-	if (!stack || !(stack->top))
-		return (0);
-	len = 0;
+	if (!stack || !(stack->top) || !(stack->top->next) || !(stack->bottom))
+		return ;
 	cur = stack->top;
-	while (cur)
-	{
-		++len;
+	while (cur->next->next)
 		cur = cur->next;
-	}
-	return (len);
+	stack->bottom->next = stack->top;
+	stack->top = stack->bottom;
+	stack->bottom = cur;
+	stack->bottom->next = 0;
 }

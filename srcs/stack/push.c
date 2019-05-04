@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/21 05:31:32 by rreedy            #+#    #+#             */
-/*   Updated: 2019/04/24 08:18:59 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/03 23:25:06 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	pa(t_stack *a, t_stack *b, int print)
 
 void	pb(t_stack *a, t_stack *b, int print)
 {
-	if (!a || !b || !(a->top))
+	if (!a || !(a->top) || !b)
 		return ;
 	ft_stack_push(b, ft_stack_pop(a));
 	if (print)

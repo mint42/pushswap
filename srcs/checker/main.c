@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/02 04:47:40 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/04 01:19:08 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		get_operations(t_stack *ops)
 		ft_stack_push(ops, (void *)i);
 		if (*i == TOTAL_OPS)
 			return (0);
-		ra(ops, 0, 0);
+		ft_stack_rotate(ops);
 		ft_strdel(&input);
 	}
 	return (1);
@@ -86,7 +86,7 @@ int				main(int argc, char **argv)
 	if (get_stack(a, argv, argc - 1) && get_operations(ops))
 	{
 		execute(a, b, ops);
-		if ((issort(a, stack_len(a)) == 0) && !(b->top))
+		if (issort(a, ft_stack_len(a)) && !(b->top))
 			ft_printf("OK\n");
 		else
 			ft_printf("KO\n");

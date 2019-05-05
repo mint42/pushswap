@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 04:27:09 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 06:54:35 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/05 01:27:21 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		rotatesort_a(t_stack *a, int len_a)
 	return (0);
 }
 
-int		rotatesort_b(t_stack *a, t_stack *b, int len_b)
+int		rotatesort_b(t_stack *a, t_stack *b, int len_b, int push_to_a)
 {
 	int		ro;
 
@@ -59,7 +59,7 @@ int		rotatesort_b(t_stack *a, t_stack *b, int len_b)
 			++ro;
 		}
 	}
-	while (len_b)
+	while (push_to_a && len_b)
 	{
 		pa(a, b, 1);
 		--len_b;

@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 07:47:12 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/05 01:27:59 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void		sort_b(t_stack *a, t_stack *b, int len)
 	if (!b || !b->top)
 		return ;
 	if (issortrro(b, ft_stack_len(b)))
-		len_b = rotatesort_b(a, b, ft_stack_len(b));
+		len_b = rotatesort_b(a, b, ft_stack_len(b), 1);
 	else if (issortr(b, len))
-		len_b = rotatesort_b(a, b, len);
+		len_b = rotatesort_b(a, b, len, 1);
 	else if (len <= 3 && len == ft_stack_len(b))
 		len_b = threesort_b(a, b, len);
-	else if (len < 25)
+	else if (len < 20)
 		len_b = insertionsort_b(a, b, 0, len);
 	else
 		len_b = quicksort_b(a, b, len, ((ft_stack_len(b) != len) ? 1 : 0));
@@ -57,7 +57,7 @@ void		sort_a(t_stack *a, t_stack *b, int len)
 		len_a = 0;
 	else if (len <= 3 && len == ft_stack_len(a))
 		len_a = threesort_a(a, len);
-	else if (len < 25)
+	else if (len < 20)
 		len_a = insertionsort_a(a, b, len, 0);
 	else
 		len_a = quicksort_a(a, b, len, ((ft_stack_len(a) != len) ? 1 : 0));

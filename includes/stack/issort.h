@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.h                                             :+:      :+:    :+:   */
+/*   issort.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/04 05:05:29 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 05:11:37 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/06 04:08:37 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/06 06:17:55 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int		issort(t_stack *stack, int len);
 int		issortr(t_stack *stack, int len);
-int		issortro(t_stack *stack, int len);
-int		issortrro(t_stack *stack, int len);
+int		ro_index(t_stack *stack);
+int		rro_index(t_stack *stack);
 
 #endif

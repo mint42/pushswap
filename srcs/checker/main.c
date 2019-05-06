@@ -6,14 +6,14 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 08:29:16 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 03:56:02 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "operations.h"
 #include "stack.h"
-#include "issort.h"
+#include "sort.h"
 #include "ft_stack.h"
 #include "ft_str.h"
 #include "ft_mem.h"

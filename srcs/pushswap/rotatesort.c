@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 04:27:09 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/05 14:24:55 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 06:30:27 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int		rotatesort_a(t_stack *a, int len_a)
 {
 	int		ro;
 
-	ro = issortro(a, len_a);
+	ro = ro_index(a);
 	if (ro < (len_a / 2))
 	{
-		while (ro)
+		while (ro > 0)
 		{
 			ra(a, 0, 1);
 			--ro;
 		}
 	}
-	else if (ro)
+	else if (ro > 0)
 	{
 		while (ro < len_a)
 		{
@@ -42,16 +42,16 @@ int		rotatesort_b(t_stack *a, t_stack *b, int len_b, int push_to_a)
 {
 	int		ro;
 
-	ro = issortrro(b, len_b);
+	ro = rro_index(b);
 	if (ro <= (len_b / 2))
 	{
-		while (ro)
+		while (ro > 0)
 		{
 			rb(0, b, 1);
 			--ro;
 		}
 	}
-	else if (ro)
+	else if (ro > 0)
 	{
 		while (ro < len_b)
 		{

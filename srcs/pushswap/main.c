@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/05 01:27:59 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 07:18:42 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void		sort_b(t_stack *a, t_stack *b, int len)
 
 	if (!b || !b->top)
 		return ;
-	if (issortrro(b, ft_stack_len(b)))
-		len_b = rotatesort_b(a, b, ft_stack_len(b), 1);
-	else if (issortr(b, len))
-		len_b = rotatesort_b(a, b, len, 1);
-	else if (len <= 3 && len == ft_stack_len(b))
-		len_b = threesort_b(a, b, len);
-	else if (len < 20)
-		len_b = insertionsort_b(a, b, 0, len);
+	len_b = ft_stack_len(b);
+	len_a = ft_stack_len(a);
+	if (rro_index(b) != -1)
+		len_b = rotatesort_b(a, b, len_b, 1);
+	else if (ft_stack_len(b) <= 3)
+		len_b = threesort_b(a, b, len_b);
+	else if (len < 20 || issortr(b, len))
+		len_b = insertionsort_b(a, b, len_a, len);
 	else
-		len_b = quicksort_b(a, b, len, ((ft_stack_len(b) != len) ? 1 : 0));
+		len_b = quicksort_b(a, b, len, ((len_b != len) ? 1 : 0));
 	len_a = (len_b) ? len - len_b : 0;
 	if (len_a != 0)
 		sort_a(a, b, len_a);
@@ -51,16 +51,15 @@ void		sort_a(t_stack *a, t_stack *b, int len)
 
 	if (!a || !a->top)
 		return ;
-	if (issortro(a, ft_stack_len(a)))
-		len_a = rotatesort_a(a, ft_stack_len(a));
-	else if (issort(a, len))
-		len_a = 0;
-	else if (len <= 3 && len == ft_stack_len(a))
-		len_a = threesort_a(a, len);
+	len_a = ft_stack_len(a);
+	if (ro_index(a) != -1)
+		len_a = rotatesort_a(a, len_a);
+	else if (len_a <= 3)
+		len_a = threesort_a(a, len_a);
 	else if (len < 20)
-		len_a = insertionsort_a(a, b, len, 0);
+		len_a = insertionsort_a(a, b, len_a, 0);
 	else
-		len_a = quicksort_a(a, b, len, ((ft_stack_len(a) != len) ? 1 : 0));
+		len_a = quicksort_a(a, b, len, ((len_a != len) ? 1 : 0));
 	len_b = (len_a) ? len - len_a : 0;
 	if (len_a != 0)
 		sort_a(a, b, len_a);

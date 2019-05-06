@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   issort.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/04 05:00:18 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 06:07:56 by rreedy           ###   ########.fr       */
+/*   Created: 2019/05/06 04:09:18 by rreedy            #+#    #+#             */
+/*   Updated: 2019/05/06 06:45:16 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-#include "issort.h"
 #include "ft_stack.h"
+#include "ft_printf.h"
 
 int		issort(t_stack *stack, int len)
 {
 	t_snode		*cur;
 
 	if (!stack || !(stack->top))
-		return (1);
+		return (0);
 	cur = stack->top;
 	while (cur->next && len)
 	{
@@ -31,32 +31,31 @@ int		issort(t_stack *stack, int len)
 	return (1);
 }
 
-int		issortro(t_stack *stack, int len)
+int		ro_index(t_stack *stack)
 {
 	t_snode		*cur;
-	int			rlen;
+	int			i;
 	int			ro;
 
 	if (!stack || !(stack->top))
-		return (1);
-	rlen = 0;
+		return (-1);
+	i = 0;
 	ro = 0;
 	cur = stack->top;
-	while (cur->next && len)
+	while (cur->next)
 	{
-		++rlen;
-		--len;
+		++i;
 		if (NUM(cur) > NUM(cur->next))
 		{
 			if (!ro)
-				ro = rlen;
+				ro = i;
 			else
-				return (0);
+				return (-1);
 		}
 		cur = cur->next;
 	}
-	if (ro && (NUM(stack->top) < NUM(cur)))
-		return (0);
+	if (ro && NUM(stack->top) < NUM(cur))
+		return (-1);
 	return (ro);
 }
 
@@ -77,31 +76,30 @@ int		issortr(t_stack *stack, int len)
 	return (1);
 }
 
-int		issortrro(t_stack *stack, int len)
+int		rro_index(t_stack *stack)
 {
 	t_snode		*cur;
-	int			rlen;
+	int			i;
 	int			rro;
 
 	if (!stack || !(stack->top))
-		return (1);
-	rlen = 0;
+		return (-1);
+	i = 0;
 	rro = 0;
 	cur = stack->top;
-	while (cur->next && len)
+	while (cur->next)
 	{
-		++rlen;
-		--len;
+		++i;
 		if (NUM(cur) < NUM(cur->next))
 		{
 			if (!rro)
-				rro = rlen;
+				rro = i;
 			else
-				return (0);
+				return (-1);
 		}
 		cur = cur->next;
 	}
 	if (rro && (NUM(stack->top) > NUM(cur)))
-		return (0);
+		return (-1);
 	return (rro);
 }

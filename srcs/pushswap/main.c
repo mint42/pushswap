@@ -6,10 +6,11 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 07:18:42 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 10:51:19 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "indexing.h"
 #include "pushswap.h"
 #include "rotatesort.h"
 #include "threesort.h"

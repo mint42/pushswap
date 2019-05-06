@@ -6,7 +6,7 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/22 00:16:25 by rreedy            #+#    #+#              #
-#    Updated: 2019/04/22 00:19:50 by rreedy           ###   ########.fr        #
+#    Updated: 2019/05/06 11:01:05 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,11 @@ CC := gcc
 INCLUDES := -I./includes -I./includes/ft_printf
 CFLAGS += -Wall -Wextra -Werror $(INCLUDES)
 LFLAGS += -L./ -lft
-MODS := ft_binarytree\
-		ft_conv\
-		ft_double_array\
+MODS := ft_conv\
 		ft_list\
 		ft_math\
 		ft_mem\
 		ft_printf\
-		ft_put\
-		ft_queue\
 		ft_stack\
 		ft_str\
 		ft_utils\

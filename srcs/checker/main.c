@@ -6,14 +6,14 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 03:56:02 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 10:45:05 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "operations.h"
 #include "stack.h"
-#include "sort.h"
+#include "issort.h"
 #include "ft_stack.h"
 #include "ft_str.h"
 #include "ft_mem.h"
@@ -28,7 +28,7 @@ static int		get_operations(t_stack *ops)
 
 	if (!ops)
 		return (0);
-	input = ft_strnew(0);
+	input = 0;
 	while (get_next_line(0, &input))
 	{
 		i = (int *)ft_memalloc(sizeof(int));

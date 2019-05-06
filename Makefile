@@ -6,7 +6,7 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2019/05/02 02:30:34 by rreedy           ###   ########.fr        #
+#    Updated: 2019/05/06 10:38:38 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ STACK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/stack/*.c))
 
 CC := gcc
 INCLUDES := -I./includes/pushswap -I./includes/checker -I./includes/stack -I./lib/includes -I./lib/includes/ft_printf
-CFLAGS += -g -Wall -Wextra -Werror $(INCLUDES)
+CFLAGS += -Wall -Wextra -Werror $(INCLUDES)
 LFLAGS += -L./lib -lft
 
 .PHONY: all clean fclean re name

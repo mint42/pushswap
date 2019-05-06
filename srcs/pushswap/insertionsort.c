@@ -6,62 +6,17 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 01:36:34 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 07:56:19 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 10:51:19 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "indexing.h"
 #include "threesort.h"
 #include "rotatesort.h"
 #include "insertionsort.h"
 #include "stack.h"
 #include "operations.h"
-#include "issort.h"
 #include "ft_stack.h"
-#include "ft_printf.h"
-
-/*
-static int		find_location(t_stack *a, int len_a, int num)
-{
-	t_snode		*cur;
-	int			ro;
-	int			location;
-
-	if (!a || !(a->top))
-		return (0);
-	location = 0;
-	cur = a->top;
-	ro = ro_index(a);
-	if (ro == -1)
-		return (-1);
-	if (!ro)
-		ro = len_a;
-	if (cur && num < NUM(cur))
-	{
-		while (location < ro)
-		{
-			cur = cur->next;
-			++location;
-		}
-		while (cur && num > NUM(cur))
-		{
-			cur = cur->next;
-			++location;
-		}
-	}
-	else
-	{
-		while (ro && cur && num > NUM(cur))
-		{
-			cur = cur->next;
-			++location;
-			--ro;
-		}
-	}
-	if (location == len_a)
-		return (0);
-	return (location);
-}
-*/
 
 static void		rotate_to_location(t_stack *a, int len_a, int location)
 {
@@ -83,6 +38,20 @@ static void		rotate_to_location(t_stack *a, int len_a, int location)
 	}
 }
 
+static int		get_location(t_snode *cur, int num, int ro)
+{
+	int		location;
+
+	location = 0;
+	while (ro && cur && num > NUM(cur))
+	{
+		cur = cur->next;
+		++location;
+		--ro;
+	}
+	return (location);
+}
+
 static int		find_location(t_stack *a, int len_a, int num)
 {
 	t_snode		*cur;
@@ -91,38 +60,24 @@ static int		find_location(t_stack *a, int len_a, int num)
 
 	if (!a || !(a->top))
 		return (0);
-	location = 0;
 	cur = a->top;
+	location = 0;
 	ro = ro_index(a);
 	if (ro == -1)
 		return (-1);
 	if (!ro)
 		ro = len_a;
-	if (cur && num < NUM(cur))
+	if (num < NUM(a->top))
 	{
 		while (location < ro)
 		{
 			cur = cur->next;
 			++location;
 		}
-		while (cur && num > NUM(cur))
-		{
-			cur = cur->next;
-			++location;
-		}
+		ro = len_a - ro;
 	}
-	else
-	{
-		while (ro && cur && num > NUM(cur))
-		{
-			cur = cur->next;
-			++location;
-			--ro;
-		}
-	}
-	if (location == len_a)
-		return (0);
-	return (location);
+	location = location + get_location(cur, num, ro);
+	return ((location != len_a) ? location : 0);
 }
 
 int				insertionsort_b(t_stack *a, t_stack *b, int len_a, int len_b)
@@ -147,13 +102,19 @@ int				insertionsort_b(t_stack *a, t_stack *b, int len_a, int len_b)
 
 int				insertionsort_a(t_stack *a, t_stack *b, int len_a, int len_b)
 {
+	int		sort;
+
 	if (!len_a || len_a == 1)
 		return (0);
-	while (len_a > 3 && !issort(a, len_a) && ro_index(a) == -1)
+	sort = sort_index(a);
+	if (sort == -1)
+		return (0);
+	while (len_a > 3 && sort && ro_index(a) == -1)
 	{
 		pb(a, b, 1);
 		--len_a;
 		++len_b;
+		--sort;
 	}
 	if (len_a <= 3)
 		threesort_a(a, len_a);

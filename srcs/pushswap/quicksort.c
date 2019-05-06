@@ -6,16 +6,15 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 04:07:29 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 04:08:16 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 10:51:19 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "quicksort.h"
+#include "stack.h"
 #include "operations.h"
 #include "issort.h"
 #include "ft_stack.h"
-#include "ft_printf.h"
 
 static void		undo_rotations(t_stack *stack, int rots, int aorb)
 {
@@ -35,35 +34,6 @@ static void		undo_rotations(t_stack *stack, int rots, int aorb)
 			--rots;
 		}
 	}
-}
-
-int				quicksort_a(t_stack *a, t_stack *b, int len, int rr)
-{
-	int		rots;
-	int		pivot;
-	int		i;
-
-	if ((pivot = get_pivot(a, len, STACK_A)) == -1)
-		return (0);
-	rots = 0;
-	i = len;
-	while (a->top && i && !(issort(a, len) && !rots))
-	{
-		if (NUM(a->top) < pivot)
-		{
-			pb(a, b, 1);
-			--len;
-		}
-		else
-		{
-			ra(a, b, 1);
-			++rots;
-		}
-		--i;
-	}
-	if (rr)
-		undo_rotations(a, rots, STACK_A);
-	return (len);
 }
 
 int				quicksort_b(t_stack *a, t_stack *b, int len, int rr)
@@ -92,5 +62,34 @@ int				quicksort_b(t_stack *a, t_stack *b, int len, int rr)
 	}
 	if (rr)
 		undo_rotations(b, rots, STACK_B);
+	return (len);
+}
+
+int				quicksort_a(t_stack *a, t_stack *b, int len, int rr)
+{
+	int		rots;
+	int		pivot;
+	int		i;
+
+	if ((pivot = get_pivot(a, len, STACK_A)) == -1)
+		return (0);
+	rots = 0;
+	i = len;
+	while (a->top && i && !(issort(a, len) && !rots))
+	{
+		if (NUM(a->top) < pivot)
+		{
+			pb(a, b, 1);
+			--len;
+		}
+		else
+		{
+			ra(a, b, 1);
+			++rots;
+		}
+		--i;
+	}
+	if (rr)
+		undo_rotations(a, rots, STACK_A);
 	return (len);
 }

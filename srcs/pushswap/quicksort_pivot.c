@@ -6,12 +6,12 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 04:30:26 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 08:38:16 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/06 08:16:45 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "quicksort.h"
+#include "stack.h"
 #include "ft_stack.h"
 #include "ft_math.h"
 

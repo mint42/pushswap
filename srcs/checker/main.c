@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/07 04:17:43 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 05:57:06 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static int		get_operations(t_stack *ops)
 			++(*i);
 		}
 		ft_stack_push(ops, (void *)i);
-		if (*i == TOTAL_OPS)
-			return (0);
 		ft_stack_rotate(ops);
 		ft_strdel(&input);
+		if (*i == TOTAL_OPS)
+			return (0);
 	}
 	return (1);
 }

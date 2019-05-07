@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/07 06:16:29 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 06:30:56 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,16 @@ int			main(int argc, char **argv)
 
 	a = ft_stack_init();
 	b = ft_stack_init();
-	if (argc < 2)
-		;
-	else if (get_stack(a, argv, argc - 1))
+	if (argc > 1)
 	{
-		if (!issort(a, ft_stack_len(a)))
-			sort_a(a, b, ft_stack_len(a));
+		if (get_stack(a, argv, argc - 1))
+		{
+			if (!issort(a, ft_stack_len(a)))
+				sort_a(a, b, ft_stack_len(a));
+		}
+		else
+			ft_printf("Error\n");
 	}
-	else
-		ft_printf("Error\n");
 	ft_stack_del(&a, ft_stack_del_content);
 	ft_stack_del(&b, ft_stack_del_content);
 	return (0);

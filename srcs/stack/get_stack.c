@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/20 13:20:45 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/07 04:41:56 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 04:46:47 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,12 @@ int				get_stack(t_stack *stack, char **argv, int argc)
 	{
 		n = (long int *)ft_memalloc(sizeof(long int));
 		*n = 0;
-		ft_stack_push(stack, (void *)n);
 		if (is_atol(n, argv[argc]) || is_duplicate(stack, *n))
+		{
+			ft_memdel((void *)n);
 			return (0);
+		}
+		ft_stack_push(stack, (void *)n);
 		--argc;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 04:07:29 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 10:51:19 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 13:42:44 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ int				quicksort_b(t_stack *a, t_stack *b, int len, int rr)
 	int		pivot;
 	int		i;
 
-	if ((pivot = get_pivot(b, len, STACK_B)) == -1)
-		return (0);
-	rots = 0;
 	i = len;
+	rots = 0;
+	pivot = get_pivot(b, len);
 	while (b->top && i && !(issortr(b, len) && !rots))
 	{
 		if (NUM(b->top) > pivot)
@@ -71,10 +70,9 @@ int				quicksort_a(t_stack *a, t_stack *b, int len, int rr)
 	int		pivot;
 	int		i;
 
-	if ((pivot = get_pivot(a, len, STACK_A)) == -1)
-		return (0);
-	rots = 0;
 	i = len;
+	rots = 0;
+	pivot = get_pivot(a, len);
 	while (a->top && i && !(issort(a, len) && !rots))
 	{
 		if (NUM(a->top) < pivot)

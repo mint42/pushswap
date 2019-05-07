@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 02:13:58 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/04 07:41:32 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 13:43:13 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ typedef struct s_stack		t_stack;
 
 int				quicksort_a(t_stack *a, t_stack *b, int len_a, int rr);
 int				quicksort_b(t_stack *a, t_stack *b, int len_b, int rr);
-int				get_pivot(t_stack *stack, int len, int aorb);
+int				get_pivot(t_stack *stack, int len);
 
 #endif

@@ -6,11 +6,10 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 04:30:26 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 08:16:45 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 13:45:24 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "quicksort.h"
 #include "stack.h"
 #include "ft_stack.h"
 #include "ft_math.h"
@@ -38,7 +37,7 @@ static int		try_pivot(t_stack *stack, int len, int pivot)
 	return (0);
 }
 
-static int		find_pivot(t_stack *stack, int len)
+int				get_pivot(t_stack *stack, int len)
 {
 	t_snode		*cur;
 	int			i;
@@ -55,19 +54,4 @@ static int		find_pivot(t_stack *stack, int len)
 		--i;
 	}
 	return (pivot);
-}
-
-int				get_pivot(t_stack *stack, int len, int aorb)
-{
-	if (!stack || !(stack->top) || !len)
-		return (-1);
-	if (len == 2)
-	{
-		if ((aorb == STACK_A && NUM(stack->top) > NUM(stack->top->next)) ||
-			(aorb == STACK_B && NUM(stack->top) < NUM(stack->top->next)))
-			return (NUM(stack->top));
-		else
-			return (NUM(stack->top->next));
-	}
-	return (find_pivot(stack, len));
 }

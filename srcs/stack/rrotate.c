@@ -6,13 +6,11 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 17:52:08 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/03 23:26:48 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 04:30:11 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
 #include "ft_stack.h"
-#include "ft_utils.h"
 #include "ft_printf.h"
 
 void	rra(t_stack *a, t_stack *b, int print)

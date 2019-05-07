@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/06 10:45:05 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 04:17:43 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int				main(int argc, char **argv)
 	}
 	else
 		ft_printf("Error\n");
-	ft_stack_del(&a, free);
-	ft_stack_del(&b, free);
-	ft_stack_del(&ops, free);
+	ft_stack_del(&a, ft_stack_del_content);
+	ft_stack_del(&b, ft_stack_del_content);
+	ft_stack_del(&ops, ft_stack_del_content);
 	return (0);
 }

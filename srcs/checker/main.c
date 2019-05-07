@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/27 10:08:22 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/07 05:57:06 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 06:17:47 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ int				main(int argc, char **argv)
 	a = ft_stack_init();
 	b = ft_stack_init();
 	ops = ft_stack_init();
-	if (get_stack(a, argv, argc - 1) && get_operations(ops))
+	if (argc < 2)
+		;
+	else if (get_stack(a, argv, argc - 1) && get_operations(ops))
 	{
 		execute(a, b, ops);
 		if (issort(a, ft_stack_len(a)) && !(b->top))

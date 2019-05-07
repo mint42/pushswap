@@ -6,7 +6,7 @@
 /*   By: rreedy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 02:13:03 by rreedy            #+#    #+#             */
-/*   Updated: 2019/05/07 04:58:02 by rreedy           ###   ########.fr       */
+/*   Updated: 2019/05/07 05:08:03 by rreedy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void		sort_b(t_stack *a, t_stack *b, int len)
 		return ;
 	len_b = ft_stack_len(b);
 	len_a = ft_stack_len(a);
-	if (rro_index(b) != -1)
-		len_b = rotatesort_b(a, b, len_b, 1);
-	else if (ft_stack_len(b) <= 3)
+	if (len_b <= 3)
 		len_b = threesort_b(a, b, len_b);
+	else if (rro_index(b) != -1)
+		len_b = rotatesort_b(a, b, len_b, 1);
 	else if (len < 20 || issortr(b, len))
 		len_b = insertionsort_b(a, b, len_a, len);
 	else
@@ -53,10 +53,10 @@ void		sort_a(t_stack *a, t_stack *b, int len)
 	if (!a || !a->top)
 		return ;
 	len_a = ft_stack_len(a);
-	if (ro_index(a) != -1)
-		len_a = rotatesort_a(a, len_a);
-	else if (len_a <= 3)
+	if (len_a <= 3)
 		len_a = threesort_a(a, len_a);
+	else if (ro_index(a) != -1)
+		len_a = rotatesort_a(a, len_a);
 	else if (len < 20)
 		len_a = insertionsort_a(a, b, len_a, 0);
 	else

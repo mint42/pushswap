@@ -6,22 +6,22 @@
 #    By: rreedy <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 16:58:46 by rreedy            #+#    #+#              #
-#    Updated: 2019/05/06 10:38:38 by rreedy           ###   ########.fr        #
+#    Updated: 2019/09/04 17:23:45 by rreedy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CHEKR := checker
 PSWAP := push_swap
-LIB := lib/libft.a
+LIB := libft/libft.a
 
 CHECK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/checker/*.c))
 PSWAP_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/pushswap/*.c))
 STACK_OBJS := $(patsubst %.c,%.o,$(wildcard ./srcs/stack/*.c))
 
 CC := gcc
-INCLUDES := -I./includes/pushswap -I./includes/checker -I./includes/stack -I./lib/includes -I./lib/includes/ft_printf
+INCLUDES := -I./includes/pushswap -I./includes/checker -I./includes/stack -I./libft/includes -I./libft/includes/ft_printf
 CFLAGS += -Wall -Wextra -Werror $(INCLUDES)
-LFLAGS += -L./lib -lft
+LFLAGS += -L./libft -lft
 
 .PHONY: all clean fclean re name
 
@@ -36,14 +36,14 @@ $(PSWAP): $(LIB) $(STACK_OBJS) $(PSWAP_OBJS)
 	$(CC) $(CFLAGS) $(STACK_OBJS) $(PSWAP_OBJS) -o $(PSWAP) $(LFLAGS)
 
 $(LIB):
-	@- make -C lib/ all
+	@- make -C libft/ all
 
 clean:
 	@- $(RM) $(CHECK_OBJS) $(PSWAP_OBJS) $(STACK_OBJS)
-	@- make -C lib/ clean
+	@- make -C libft/ clean
 
 fclean: clean
 	@- $(RM) $(PSWAP) $(CHEKR)
-	@- make -C lib/ fclean
+	@- make -C libft/ fclean
 
 re: fclean all
